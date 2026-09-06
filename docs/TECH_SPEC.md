@@ -6,6 +6,8 @@ T-201 결과: 실제 Firefox에서 iframe content script를 통한 video.playbac
 
 ## 제안 구성
 
+사용자 승인 변경(2026-09-06): 설정 UI는 도구 모음 팝업에서 플레이어 아래 인라인 패널로 이동하며 즉시 저장한다. extension/에 의존성 없는 JavaScript 버전을 구현했다. background는 동일 탭의 지정된 Cloudflare frameId로 메시지를 전달하는 최소 중계 역할이다. 아래 TypeScript/esbuild 구성은 초기 제안이며 이번 버전의 필수 실행 조건이 아니다.
+
 Firefox WebExtensions Manifest V3, TypeScript, HTML/CSS 팝업, browser.storage.local, esbuild, web-ext. 외부 서버와 UI 프레임워크 없이 시작한다. 의존성 버전과 API 호환성은 구현 시 공식 문서로 확인한다.
 
 팝업 → storage.local → content script → player adapter → 기존 플레이어.

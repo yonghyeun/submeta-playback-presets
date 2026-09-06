@@ -1,5 +1,9 @@
 # Submeta Playback Preset
 
+## 현재 사용자용 버전
+
+[extension/README.md](extension/README.md): 플레이어 아래에서 배속·CC·언어를 설정하고 자동 저장하는 0.2 버전. [구현 및 검증 기록](docs/INLINE_PRESETS.md)을 참고한다. 기존 experiments/ 폴더는 수동 제어 실험이며 사용자용 버전과 구분한다.
+
 Submeta 기존 강의 플레이어의 배속과 자막 설정을 영상마다 자동 적용하는 Firefox 데스크톱 확장 기능.
 
 ## 현재 상태
