@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Submeta Player Control Experiment",
+  "version": "0.1.0",
+  "host_permissions": ["https://submeta.io/*", "https://iframe.cloudflarestream.com/*"],
+  "description": "Manual, temporary player control experiment. No settings or credentials stored.",
+  "browser_specific_settings": {"gecko": {"id": "player-poc@submeta.local"}},
+  "content_scripts": [
+    {"matches": ["https://submeta.io/*/courses/*"], "js": ["parent.js", "vendor/cloudflare-sdk.js"], "run_at": "document_idle"},
+    {"matches": ["https://iframe.cloudflarestream.com/*"], "js": ["frame.js"], "all_frames": true, "run_at": "document_idle"}
+  ]
+}

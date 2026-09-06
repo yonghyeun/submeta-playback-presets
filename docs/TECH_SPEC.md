@@ -2,6 +2,8 @@
 
 2026-09-06 조사 반영: 최초 강의에서 Cloudflare Stream iframe을 확인했다. 자막 UI의 7개 언어와 HTML textTracks의 단일 Shaka 트랙이 일치하지 않으므로 표준 자막 API만 사용하는 설계는 보류한다. 상세 관찰과 미확인 사항은 [POC_RESULTS.md](POC_RESULTS.md)에 기록했다. 아래 어댑터 우선순위는 유지하되 실제 제어 경로는 후속 실험으로 확정한다.
 
+T-201 결과: 실제 Firefox에서 iframe content script를 통한 video.playbackRate 변경과 접근성 역할 기반 자막 메뉴 선택·끄기가 성공했다. 자막은 단일 TextTrack의 showing/hidden 및 화면 표시로 대조할 수 있다. 늦게 연결한 공식 SDK의 배속 명령은 미반영됐으며 초기 연결 가능성은 미확인이다. T-301까지는 검증된 직접 제어 경로를 후보로 유지하고 공급자 전체·모든 영상 지원으로 일반화하지 않는다.
+
 ## 제안 구성
 
 Firefox WebExtensions Manifest V3, TypeScript, HTML/CSS 팝업, browser.storage.local, esbuild, web-ext. 외부 서버와 UI 프레임워크 없이 시작한다. 의존성 버전과 API 호환성은 구현 시 공식 문서로 확인한다.

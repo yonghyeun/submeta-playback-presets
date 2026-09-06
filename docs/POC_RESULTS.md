@@ -1,6 +1,47 @@
 # 플레이어 기술검증 기록
 
-상태: T-101 최초 강의 구조 조사 수행. 실제 제어 실험과 Firefox 확장 환경 검증은 미실행.
+상태: T-101 조사 및 T-201 단일 강의 Firefox 최소 제어 실험 수행. 연속 영상 전환과 제품 자동 유지 기능은 미검증.
+
+## 2026-09-06 — T-201 Firefox 최소 제어 결과
+
+환경: macOS의 실제 Firefox 155.0.1, about:debugging 임시 Manifest V3 확장. 기존 Firefox 로그인 세션을 사용했다. 이번 실험에서 .env를 다시 읽지 않았다. 코드: experiments/player-poc/.
+
+| 실험 | 변경 전 | 변경 후 확인 | 결과 |
+| --- | --- | --- | --- |
+| iframe content script 읽기 | 영상 일시정지 | 실제 playbackRate=1, readyState=4, Captions:Off | 성공 |
+| 준비된 iframe에 SDK를 늦게 연결해 playbackRate=1.25 설정 | 실제 1배 | 1.2초 후 독립적인 frame probe의 실제값은 1배 | 실패 — 이 연결 타이밍에서 미반영 |
+| iframe의 HTMLVideoElement.playbackRate=1.25 | 1배, paused=true | 실제 1.25배, paused=true | 성공 |
+| 접근성 역할 기반 자막 메뉴에서 한국어 선택 | Captions:Off | Captions:한국어, 배속 1.25와 paused=true 유지 | 성공 |
+| 실제 자막 표시 | 한국어 선택, 영상 정지 | 짧게 재생 후 일시정지한 화면에 한국어 자막 표시. 표준 트랙 mode=showing, activeCueCount=1 | 성공 |
+| 자막 Off | 한국어 자막이 표시된 정지 프레임 | 동일 프레임에서 글자 사라짐, Captions:Off, mode=hidden | 성공 |
+| 원래 설정 복구 | 1.25배 / Off | 실제 1배 / Off / paused=true | 성공 |
+
+### 확보한 제어 경로
+
+- 배속: iframe 안의 content script에서 표준 video.playbackRate를 읽고 변경한 뒤 다시 읽는다.
+- 자막: iframe 안의 Captions combobox → option의 표시 언어로 선택한다. Radix UI 메뉴의 pointerdown/pointerup/click 처리를 통해 메뉴 열기와 선택이 가능했다.
+- 자막 검증: 메뉴 표시 상태와 TextTrack.mode를 함께 읽고, 실제 화면에서 표시/소실을 확인했다. mode=hidden에서도 activeCueCount가 1로 남았으므로 cue 존재 여부만으로 자막 표시 성공을 판단하면 안 된다.
+- 명령은 현재 Submeta 강의의 유일한 Cloudflare iframe을 대상으로 하며, frame probe 응답은 발신 origin과 window를 대조한다. 본문 자막 텍스트와 인증 URL은 코드 출력에 포함하지 않는다.
+
+### 공식 SDK 결과의 해석
+
+다운로드한 공식 SDK 코드에는 playbackRate 속성이 실제로 존재한다. setter는 내부 캐시를 즉시 갱신하며, iframeReady 이전에는 명령을 큐에 둔다. 이번 실험은 iframe이 이미 준비된 뒤 SDK를 연결했으므로 초기 준비 신호를 놓쳤을 가능성이 있다. 원인 확정이나 공식 SDK 전체 미지원 판정은 하지 않는다. 초기 시점 연결·재연결 실험은 후속 과제로 남긴다.
+
+SDK 출처: https://embed.cloudflarestream.com/embed/sdk.latest.js
+
+SHA-256: f8627f93c15f8628b530b802164e1d2afe03e5256ab3ad3595abb52573c14711
+
+### 제한과 후속 작업
+
+- 단일 강의에서 수동 버튼으로 실행한 POC다. 저장·자동 적용·충돌 복구·30회 전환 검수를 통과한 제품이 아니다.
+- 초기 패널 주입과 확장 재로드 과정에서 진단 UI가 보이지 않거나 기존 UI의 핸들러가 사라지는 문제를 겪었다. 최종 실험은 확장 재로드 후 강의 페이지도 다시 로드하여 실행했다. 최초 주입 실패의 단일 원인을 확정하지 않는다.
+- 제어 검증을 위해 몇 초 재생 후 정지했다. 재생 위치·시청 이력을 되돌리는 조작은 하지 않았다.
+- 다음 T-301에서 두 코스 이상 전환, iframe 교체/재사용, 명령 세대 구분, 자막 지연, 설정 재적용을 확인한다. 공식 SDK 초기 연결 가능성도 함께 조사한다.
+- 제품에서는 postMessage 진단 브리지 대신 확장 메시지 기반 프레임 식별을 검토하고, 사이트 전체에서 임의로 실행되지 않도록 주 플레이어 연결을 강화한다.
+
+문법 검증: manifest JSON 파싱과 SDK 포함 모든 JavaScript 스크립트의 구문 검사를 통과했다. 빌드 도구가 필요 없는 POC이므로 Node.js·npm 설치 상태와 별개로 실제 Firefox에 임시 로드했다.
+
+최종 최소 권한 manifest로 재로드한 뒤 배속 1→1.25, 한국어/Off, 1배 복구를 재확인했다. 임시 진단용 scripting/activeTab 권한은 최종 코드에서 제거했다. 실험 종료 후 Firefox의 임시 확장을 제거했으며 소스 파일은 저장소에 보존한다.
 
 ## 2026-09-06 — T-101 최초 관찰
 
