@@ -1,5 +1,7 @@
 # 기술 설계 — 검증 전 초안
 
+2026-09-06 조사 반영: 최초 강의에서 Cloudflare Stream iframe을 확인했다. 자막 UI의 7개 언어와 HTML textTracks의 단일 Shaka 트랙이 일치하지 않으므로 표준 자막 API만 사용하는 설계는 보류한다. 상세 관찰과 미확인 사항은 [POC_RESULTS.md](POC_RESULTS.md)에 기록했다. 아래 어댑터 우선순위는 유지하되 실제 제어 경로는 후속 실험으로 확정한다.
+
 ## 제안 구성
 
 Firefox WebExtensions Manifest V3, TypeScript, HTML/CSS 팝업, browser.storage.local, esbuild, web-ext. 외부 서버와 UI 프레임워크 없이 시작한다. 의존성 버전과 API 호환성은 구현 시 공식 문서로 확인한다.
