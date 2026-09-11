@@ -28,8 +28,10 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
+      - run: npm run audit:dependencies
       - run: npm run test:unit
       - run: npm run lint:extension
+        timeout-minutes: 2
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
       - run: npm run package:release
