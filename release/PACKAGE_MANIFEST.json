@@ -1,0 +1,48 @@
+{
+  "version": "0.3.0",
+  "signed": false,
+  "archive": "submeta-playback-preset-0.3.0-unsigned.zip",
+  "sha256": "2c35bc56f63620c73bb4d329d0b68735958f35c8edb73f884d8701d72c8c46c8",
+  "files": {
+    "README.md": {
+      "bytes": 3605,
+      "sha256": "2f944e66fbfbe49d030ba17f01565ec2ac8bd2eefdf428724945778760e9215e"
+    },
+    "background.js": {
+      "bytes": 909,
+      "sha256": "bc323caff0964c37902ed79789a41d48cac67d32bbd2bdeda6fa63133381f824"
+    },
+    "icons/icon-128.png": {
+      "bytes": 2062,
+      "sha256": "90376c4e036bb63a4c07f7b26d0a3f49b01d54c2618c449c1b94d1ab1bfaadf3"
+    },
+    "icons/icon-48.png": {
+      "bytes": 892,
+      "sha256": "70e81892d796b19833a3af77f88bbeab47751c2c453aa56954eb67c48c2ed888"
+    },
+    "icons/icon-96.png": {
+      "bytes": 1680,
+      "sha256": "c9baf928a60ac50baba7b3360b7205da4aef5759fc41547a9dca3eca3b24a24a"
+    },
+    "icons/icon.svg": {
+      "bytes": 408,
+      "sha256": "a949ea569ac2f9d8f35183ff79d6173f69aa47b3ebf56d1f77fb12c6546ab7e6"
+    },
+    "manifest.json": {
+      "bytes": 1199,
+      "sha256": "fe4e1f36185dedee13f3c67ea97ed64f2856d9bb2447c3828f949a01480227e9"
+    },
+    "panel.js": {
+      "bytes": 10432,
+      "sha256": "fdd5946d7ec9c0b2aac583cf4b67eba4e9d03012dd71b9e3e46601431f7666bb"
+    },
+    "player.js": {
+      "bytes": 11792,
+      "sha256": "aa1e4406123bc568b75b1c9053d6ab247073cb61d856210d865c708d7fa4c7a2"
+    },
+    "shared.js": {
+      "bytes": 1380,
+      "sha256": "96850722391d1f253927e8406c4cb45e7e3d5c6550eb4200f531bf775fcda5fb"
+    }
+  }
+}

@@ -5,7 +5,7 @@ browser.runtime.onMessage.addListener((m, sender) => {
   let origin;
   try { origin = new URL(sender.url).origin; } catch { return; }
   if (sender.frameId === 0 && origin === 'https://submeta.io' && m.type === 'relay' && Number.isInteger(m.frameId) && m.frameId > 0) {
-    return browser.tabs.sendMessage(tabId, {app:m.app, type:'configure', token:m.token, prefs:m.prefs, suspended:m.suspended, retry:m.retry}, {frameId:m.frameId}).catch(() => ({unavailable:true}));
+    return browser.tabs.sendMessage(tabId, {app:m.app, type:'configure', token:m.token, prefs:m.prefs, suspended:m.suspended, retry:m.retry, applyNow:m.applyNow===true}, {frameId:m.frameId}).catch(() => ({unavailable:true}));
   }
   if (sender.frameId > 0 && origin === 'https://iframe.cloudflarestream.com' && ['bound','status'].includes(m.type)) {
     return browser.tabs.sendMessage(tabId, {...m, frameId:sender.frameId}, {frameId:0}).catch(() => {});

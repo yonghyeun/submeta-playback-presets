@@ -22,8 +22,8 @@ await listener({app:'submeta-preset',type:'relay',frameId:3},{tab:{id:7},frameId
 assert.equal(sent.length,0);
 await listener({app:'submeta-preset',type:'relay',frameId:0},{tab:{id:7},frameId:0,url:'https://submeta.io/'});
 assert.equal(sent.length,0);
-await listener({app:'submeta-preset',type:'relay',frameId:3,token:'test'},{tab:{id:7},frameId:0,url:'https://submeta.io/'});
-assert.equal(sent.length,1);assert.equal(sent[0][0],7);assert.equal(sent[0][2].frameId,3);
+await listener({app:'submeta-preset',type:'relay',frameId:3,token:'test',applyNow:true},{tab:{id:7},frameId:0,url:'https://submeta.io/'});
+assert.equal(sent.length,1);assert.equal(sent[0][0],7);assert.equal(sent[0][2].frameId,3);assert.equal(sent[0][1].applyNow,true);
 await listener({app:'submeta-preset',type:'status',token:'test'},{tab:{id:7},frameId:3,url:'https://iframe.cloudflarestream.com/redacted'});
 assert.equal(sent.length,2);assert.equal(sent[1][2].frameId,0);assert.equal(sent[1][1].frameId,3);
 const manifest=JSON.parse(await readFile(new URL('manifest.json',base),'utf8'));

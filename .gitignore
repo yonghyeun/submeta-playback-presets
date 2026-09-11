@@ -13,3 +13,6 @@ coverage/
 private/
 local-only/
 profiles/
+.cache/
+playwright-report/
+test-results/

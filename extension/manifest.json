@@ -1,14 +1,57 @@
 {
   "manifest_version": 3,
-  "name": "Submeta Playback Preset",
-  "version": "0.2.0",
-  "description": "Submeta 플레이어 아래에서 배속과 자막 기본값을 저장합니다.",
-  "browser_specific_settings": {"gecko": {"id": "playback-preset@submeta.local", "strict_min_version": "128.0"}},
-  "permissions": ["storage"],
-  "host_permissions": ["https://submeta.io/*", "https://iframe.cloudflarestream.com/*"],
-  "background": {"scripts": ["background.js"]},
+  "name": "Playback Presets for Submeta",
+  "version": "0.3.0",
+  "description": "비공식 Submeta 보조 확장: 플레이어 아래에서 배속과 자막을 즉시 변경하고 설정을 저장합니다.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "playback-preset@submeta.local",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://submeta.io/*",
+    "https://iframe.cloudflarestream.com/*"
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
   "content_scripts": [
-    {"matches": ["https://submeta.io/*"], "js": ["shared.js", "panel.js"], "run_at": "document_idle"},
-    {"matches": ["https://iframe.cloudflarestream.com/*"], "js": ["shared.js", "player.js"], "all_frames": true, "run_at": "document_idle"}
-  ]
+    {
+      "matches": [
+        "https://submeta.io/*"
+      ],
+      "js": [
+        "shared.js",
+        "panel.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://iframe.cloudflarestream.com/*"
+      ],
+      "js": [
+        "shared.js",
+        "player.js"
+      ],
+      "all_frames": true,
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png",
+    "128": "icons/icon-128.png"
+  }
 }
