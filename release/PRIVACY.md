@@ -14,7 +14,7 @@ Playback Presets for Submeta는 비공식 재생 설정 보조 확장입니다.
 
 Submeta 및 영상 제공 서비스의 자체 네트워크 통신과 개인정보 처리는 해당 서비스의 정책을 따릅니다. 이 확장은 기존 플레이어의 재생·자막 선택 기능을 조작하며, 영상 다운로드나 구독 제한 해제 기능을 제공하지 않습니다.
 
-개인정보 관련 문의: 게시 전 공개 지원 연락처를 등록 페이지에 기재해야 합니다.
+게시자: aebongbong. 개인정보 관련 문의: aaabonggg@gmail.com.
 
 ## English
 
@@ -28,4 +28,4 @@ Current-video suspension is kept in the current tab's memory. Extension data rem
 
 Submeta and its video provider operate their own network services under their own privacy policies. This extension controls the existing playback and caption interfaces. It does not download courses or bypass subscription access.
 
-Privacy contact: a public support contact must be supplied in the store listing before publication.
+Publisher: aebongbong. Privacy and support contact: aaabonggg@gmail.com.

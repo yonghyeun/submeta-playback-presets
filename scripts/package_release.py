@@ -8,8 +8,9 @@ import zipfile
 root = Path(__file__).resolve().parent.parent
 source = root / 'extension'
 manifest = json.loads((source / 'manifest.json').read_text())
-files = ['manifest.json', 'shared.js', 'background.js', 'panel.js', 'player.js', 'README.md',
+files = ['manifest.json', 'shared.js', 'background.js', 'panel.js', 'player.js', 'README.md', 'LICENSE',
          'icons/icon.svg', 'icons/icon-48.png', 'icons/icon-96.png', 'icons/icon-128.png']
+assert (source / 'LICENSE').read_bytes() == (root / 'LICENSE').read_bytes()
 assert manifest['permissions'] == ['storage']
 assert manifest['browser_specific_settings']['gecko']['data_collection_permissions'] == {'required': ['none']}
 referenced = [*manifest['icons'].values(), *manifest['background']['scripts']]

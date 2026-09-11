@@ -12,5 +12,10 @@
     "package:release": "python3 scripts/package_release.py",
     "capture:listing": "playwright test -c playwright.listing.config.mjs"
   },
-  "devDependencies": {"playwright": "1.62.1", "web-ext": "10.6.0"}
+  "devDependencies": {
+    "playwright": "1.62.1",
+    "web-ext": "10.6.0"
+  },
+  "author": "aebongbong",
+  "license": "MIT"
 }

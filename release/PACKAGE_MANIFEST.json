@@ -2,11 +2,15 @@
   "version": "0.3.0",
   "signed": false,
   "archive": "submeta-playback-preset-0.3.0-unsigned.zip",
-  "sha256": "2c35bc56f63620c73bb4d329d0b68735958f35c8edb73f884d8701d72c8c46c8",
+  "sha256": "a6fda6d966db6fca189f5c2d544e26b50c4a7bba69df461e0d24dc34e135d504",
   "files": {
+    "LICENSE": {
+      "bytes": 1067,
+      "sha256": "cf672d6738bf45a5e3fe21d7552c13637199dddb44a6aae254fd14c44bd5c64e"
+    },
     "README.md": {
-      "bytes": 3605,
-      "sha256": "2f944e66fbfbe49d030ba17f01565ec2ac8bd2eefdf428724945778760e9215e"
+      "bytes": 3832,
+      "sha256": "72187fd7721f174256df5f9eb04258dff10515cdf92c47b2eff598bc590c2fc0"
     },
     "background.js": {
       "bytes": 909,
@@ -29,8 +33,8 @@
       "sha256": "a949ea569ac2f9d8f35183ff79d6173f69aa47b3ebf56d1f77fb12c6546ab7e6"
     },
     "manifest.json": {
-      "bytes": 1199,
-      "sha256": "fe4e1f36185dedee13f3c67ea97ed64f2856d9bb2447c3828f949a01480227e9"
+      "bytes": 1225,
+      "sha256": "1979f5342adfff12aa5599cdbeaa22b2498f298c39f9cc1e10e29dc71c460b30"
     },
     "panel.js": {
       "bytes": 10432,

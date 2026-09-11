@@ -42,3 +42,9 @@ Firefox의 Submeta 강의 플레이어 **바로 아래**에 설정 패널을 추
 ## 배포 후보 0.3.0
 
 Firefox Desktop 142 이상용 비공식 보조 확장입니다. 실제 확인 버전은 macOS Firefox 155.0.1입니다. Android 및 다른 브라우저는 배포 지원 대상으로 검증하지 않았습니다. 저장 이벤트 지연으로 자막 즉시 적용이 취소되는 문제를 수정했습니다. Mozilla 서명 전 ZIP은 임시 설치용이며 정식 설치 파일이 아닙니다.
+
+## 라이선스와 지원
+
+Copyright (c) 2026 aebongbong. [MIT License](LICENSE).
+
+공개 지원 이메일: aaabonggg@gmail.com. 원본 프로젝트의 코드 변경은 PR로 제안하고 관리자 검토 후 병합합니다.
