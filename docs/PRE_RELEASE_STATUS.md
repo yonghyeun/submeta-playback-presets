@@ -34,7 +34,7 @@
 
 ## 제출을 막는 남은 항목
 
-- PR 기여 절차와 양식 및 [공개 원격 저장소](https://github.com/yonghyeun/submeta-playback-presets) 연결 완료. 브랜치 보호는 미설정.
+- PR 기여 절차와 양식 및 [공개 원격 저장소](https://github.com/yonghyeun/submeta-playback-presets) 연결 완료. PR 및 `Extension validation` 통과를 요구하는 main 보호 규칙 적용.
 - 심사용 Submeta 계정/콘텐츠 접근 방식 미정.
 - 실사이트 선택 언어 미제공 표본은 미확인. 공개 설명에서 전체 영상 지원으로 과장하지 않음.
 - 서명 및 Firefox 종료/재시작 검증은 제출 이후 별도 수행해야 함.

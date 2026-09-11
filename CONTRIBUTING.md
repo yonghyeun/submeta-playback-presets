@@ -15,7 +15,7 @@
 ## 개발과 검증
 
 ```sh
-npm install
+npm ci
 npm run test:install
 npm test
 npm run lint:extension
@@ -32,4 +32,4 @@ npm run lint:extension
 
 ## 저장소 설정 상태
 
-공개 저장소는 [https://github.com/yonghyeun/submeta-playback-presets](https://github.com/yonghyeun/submeta-playback-presets)이며 기본 브랜치는 `main`입니다. PR 양식을 이용해 변경을 제안할 수 있습니다. 브랜치 보호와 필수 CI 검사는 아직 설정하지 않았습니다. PR 절차는 문서화된 기여 규칙이며, GitHub의 직접 push 제한은 후속 설정이 필요합니다.
+공개 저장소는 [https://github.com/yonghyeun/submeta-playback-presets](https://github.com/yonghyeun/submeta-playback-presets)이며 기본 브랜치는 `main`입니다. PR 양식을 이용해 변경을 제안할 수 있습니다. `main`은 PR과 최신 기준 브랜치에서 통과한 `Extension validation` 검사를 요구합니다. 관리자에게도 적용하며 강제 push와 브랜치 삭제를 금지합니다. 대화 해결도 병합 조건입니다. 단독 관리자의 자체 PR 병합을 허용하기 위해 필수 승인자 수는 0명입니다. 외부 기여는 관리자가 검토 후 병합합니다.
