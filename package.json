@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "audit:dependencies": "node scripts/audit-dependencies.mjs",
     "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "node tests/extension.test.mjs && node tests/player.test.mjs",
     "test:e2e": "playwright test",

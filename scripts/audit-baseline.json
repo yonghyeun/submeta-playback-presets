@@ -1,0 +1,23 @@
+{
+  "reviewBy": "2026-10-11",
+  "advisories": [
+    {
+      "package": "adm-zip",
+      "url": "https://github.com/advisories/GHSA-vwc7-r8mq-g2x9",
+      "range": ">=0.5.9 <=0.6.0",
+      "severity": "moderate"
+    },
+    {
+      "package": "image-size",
+      "url": "https://github.com/advisories/GHSA-w3rx-r6r6-pgpr",
+      "range": "<=2.0.2",
+      "severity": "high"
+    },
+    {
+      "package": "image-size",
+      "url": "https://github.com/advisories/GHSA-5p2g-fcmc-qvqq",
+      "range": "<=2.0.2",
+      "severity": "high"
+    }
+  ]
+}
