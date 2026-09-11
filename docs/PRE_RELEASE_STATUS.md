@@ -32,6 +32,10 @@
 
 정확한 최종 파일과 해시는 [패키지 명세](../release/PACKAGE_MANIFEST.json), 검사 결과는 [Mozilla lint](../release/WEB_EXT_LINT.json), 반복 검증은 [Playwright 목록](PLAYWRIGHT_TEST_CASES.md) 참조.
 
+## 개발 도구 보안 점검
+
+공식 수정 릴리스가 없는 개발 의존성 5개 항목(원인 권고 3개)은 미해결 상태입니다. 배포 ZIP에는 포함되지 않습니다. 새 권고와 2026-10-11 재검토 기한을 감시하는 CI 검사를 추가했습니다. [CI 운영 문서](CI.md) 참조.
+
 ## 제출을 막는 남은 항목
 
 - PR 기여 절차와 양식 및 [공개 원격 저장소](https://github.com/yonghyeun/submeta-playback-presets) 연결 완료. PR 및 `Extension validation` 통과를 요구하는 main 보호 규칙 적용.
