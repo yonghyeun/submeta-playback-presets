@@ -9,4 +9,4 @@
 - 성공·실패·미확인을 POC_RESULTS.md에 분리해 기록한다.
 - 쿠키, 비밀번호, 인증 토큰, 원본 영상 URL, HAR, 브라우저 프로필을 커밋하지 않는다. .gitignore와 별개로 staged diff를 확인한다.
 - 의존성과 권한은 검증에 필요한 시점에 추가한다.
-- GitHub 원격 저장소와 공개 배포는 아직 설정하지 않았다.
+- GitHub 원격 저장소: https://github.com/yonghyeun/submeta-playback-presets. 기본 브랜치는 main이다. 확장 프로그램 스토어 배포는 아직 진행하지 않았다.

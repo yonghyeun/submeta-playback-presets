@@ -29,13 +29,13 @@ npm run package:release
 - 게시자: **aebongbong**
 - 공개 지원 이메일: **aaabonggg@gmail.com**
 - 라이선스: [MIT](../LICENSE)
-- 코드 기여: [PR 절차](../CONTRIBUTING.md). 원격 저장소 연결 및 브랜치 보호는 아직 미설정.
+- 코드 기여: [PR 절차](../CONTRIBUTING.md). [공개 원격 저장소](https://github.com/yonghyeun/submeta-playback-presets) 연결 완료. 브랜치 보호는 아직 미설정.
 
 ## 제출 전 남은 결정
 
 1. 심사용 Submeta 계정·강의 접근 제공 방법. 기존 개인 계정 정보는 자료에 넣지 않았다.
 2. 서명만 받은 뒤 소수 배포할지, experimental 공개로 제출할지.
-3. 원격 저장소 위치와 PR 보호 규칙 설정.
+3. PR 보호 규칙 및 필수 CI 검사 설정.
 4. 실제로 선택 언어가 없는 강의 표본 검증 여부. 해당 동작은 자동 테스트만 통과했고 실사이트 표본은 미확인이다.
 
 ## 아직 하지 않은 작업

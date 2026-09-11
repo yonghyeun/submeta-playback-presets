@@ -32,6 +32,6 @@ Playwright 브라우저 테스트와 기존 단위 테스트를 함께 실행할
 
 Copyright (c) 2026 aebongbong. [MIT 라이선스](LICENSE)를 사용합니다.
 
-코드 변경은 [기여 안내](CONTRIBUTING.md)에 따라 PR로 제안하고 관리자 검토 후 병합합니다. 원격 저장소는 아직 연결되지 않았습니다.
+코드 변경은 [기여 안내](CONTRIBUTING.md)에 따라 PR로 제안하고 관리자 검토 후 병합합니다. 공개 저장소: [yonghyeun/submeta-playback-presets](https://github.com/yonghyeun/submeta-playback-presets).
 
 게시자: **aebongbong** · 공개 지원 이메일: **aaabonggg@gmail.com**

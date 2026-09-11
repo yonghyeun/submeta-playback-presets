@@ -4,7 +4,7 @@
 
 ## 변경을 제안하는 방법
 
-1. 공개 저장소가 마련되면 저장소를 fork하고 변경용 브랜치를 만듭니다.
+1. [공개 저장소](https://github.com/yonghyeun/submeta-playback-presets)를 fork하고 변경용 브랜치를 만듭니다.
 2. 한 PR에는 하나의 문제나 관련된 변경을 담습니다. 큰 기능 변경은 먼저 issue에서 논의합니다.
 3. 변경 목적, 재현 방법, 수정 후 동작을 PR에 설명합니다.
 4. 변경 범위에 맞는 검증 결과를 첨부합니다. UI 변경은 계정 정보가 없는 화면을 첨부합니다.
@@ -32,4 +32,4 @@ npm run lint:extension
 
 ## 저장소 설정 상태
 
-현재 로컬 저장소에는 원격 저장소가 연결되어 있지 않습니다. PR 양식은 준비되어 있지만, 실제 PR 접수에는 원격 저장소 생성/연결이 필요합니다. 연결 후 관리자가 기본 브랜치의 직접 push 제한, PR 검토 요구, 필요한 검사 통과 조건을 설정해야 합니다. 이 문서만으로 브랜치 보호가 적용되지는 않습니다.
+공개 저장소는 [https://github.com/yonghyeun/submeta-playback-presets](https://github.com/yonghyeun/submeta-playback-presets)이며 기본 브랜치는 `main`입니다. PR 양식을 이용해 변경을 제안할 수 있습니다. 브랜치 보호와 필수 CI 검사는 아직 설정하지 않았습니다. PR 절차는 문서화된 기여 규칙이며, GitHub의 직접 push 제한은 후속 설정이 필요합니다.

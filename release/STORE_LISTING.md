@@ -7,7 +7,7 @@
 - 게시자 표시 이름: **aebongbong**
 - 공개 지원 이메일: **aaabonggg@gmail.com**
 - 라이선스: **MIT**. Copyright (c) 2026 aebongbong. [라이선스 전문](../LICENSE)
-- 코드 기여: PR로 제안하고 aebongbong 검토 후 병합. [기여 절차](../CONTRIBUTING.md). 원격 저장소 URL은 연결 후 추가한다.
+- 코드 기여: PR로 제안하고 aebongbong 검토 후 병합. [기여 절차](../CONTRIBUTING.md). [공개 코드 저장소](https://github.com/yonghyeun/submeta-playback-presets).
 - 공개 범위 제안: 초기 실사용 검증 범위를 명시한 experimental 공개 또는 소수 테스터 대상 서명 배포 후 공개. 최종 제출 경로는 사용자와 확정한다.
 - 플랫폼: Firefox Desktop. Android는 실사용 검증하지 않았으므로 등록 대상으로 선택하지 않는다.
 - 최소 버전: Firefox 142. 실제 검증 버전은 macOS Firefox 155.0.1.
@@ -62,4 +62,4 @@ Preferences stay in browser-local extension storage. No personal information or 
 
 ## 제출 전 사용자 결정
 
-심사용 계정 제공 방법, 공개 방식, 원격 코드 저장소 위치. 로컬 패키지 준비만 완료하며 이 문서를 자동 게시하지 않는다.
+심사용 계정 제공 방법, 스토어 공개 방식. 로컬 패키지 준비만 완료하며 이 문서를 자동 게시하지 않는다.
