@@ -38,3 +38,5 @@ Publication is not complete until each store dashboard confirms submission/publi
 Live Firefox integration: temporarily loaded extension/manifest.json under the production ID, generated 0:30–0:35 from the real Hip Escape from Mount lesson, and confirmed 2,311 KiB result plus successful original-GIF clipboard through the 0.4.0 native allowlist. The clipboard instruction initially fell back because platform info is not available in that content-script context; moved OS lookup into the authenticated background and added Mac/Windows/failure tests.
 
 CI dependency audit detected GHSA-7q85-xj36-vmfc in adm-zip 0.6.0. Updated the lockfile to compatible patched 0.6.1; the existing audit gate now passes with only the previously tracked image-size advisories. Gate was not relaxed.
+
+Optional Mac companion published: https://github.com/yonghyeun/submeta-playback-presets/releases/tag/v0.4.0 (asset: submeta-gif-folder-0.4.0-macos.zip). Store publication remains separate from this GitHub release.
