@@ -1,5 +1,7 @@
 # Automated checks
 
+디자인 토큰·Storybook·시각 비교·접근성·키보드 검사는 [디자인 실행 안내](../docs/DESIGN_RUNBOOK.md)를 따릅니다. `npm run test:design`은 새 UI 검사와 기존 단위/lint/E2E를 연결합니다. UI 보고서는 기존 E2E 보고서와 별도로 보관합니다.
+
 한국어 항목별 절차·판정 기준·검증 한계: [Playwright 테스트 항목 및 검증 결과](../docs/PLAYWRIGHT_TEST_CASES.md).
 
 GIF 기능은 [실제 Submeta 무료 강의 E2E 계획](../docs/GIF_EXPORT_TEST_PLAN.md)과 [결과 기록 양식](../docs/GIF_EXPORT_TEST_RUN_TEMPLATE.md)을 따릅니다. 사용자 요청에 따라 새 합성 영상을 준비하지 않습니다. Mac/Firefox 개발본을 실제 UI로 조작해 생성·저장을 검증한 [실행 결과](../docs/GIF_EXPORT_GENERATION_RUN_2026-09-21.md)가 있으며, 전체 OS/사진 앱 검수는 남아 있습니다. 현재 `npm test`나 CI의 통과 결과에는 포함되지 않습니다.

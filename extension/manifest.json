@@ -37,6 +37,9 @@
       ],
       "js": [
         "shared.js",
+        "ui/tokens.js",
+        "ui/primitives.js",
+        "ui/playback-settings.js",
         "panel.js",
         "gif/launcher.js"
       ],

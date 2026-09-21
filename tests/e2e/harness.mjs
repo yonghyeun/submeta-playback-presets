@@ -13,6 +13,14 @@ export const test=base.extend({
     const temp=await mkdtemp(path.join(tmpdir(),'submeta-e2e-')),ext=path.join(temp,'extension');await mkdir(ext);
     // Extract exactly the submission ZIP. Only the delayed-event regression adds instrumentation.
     execFileSync('python3',['-m','zipfile','-e',`dist/submeta-playback-preset-${version}-chrome.zip`,ext],{cwd:root});
+    // Negative control: mutate only the temporary extracted test package.
+    if(process.env.DESIGN_FAULT==='integration'){
+      const panelPath=path.join(ext,'panel.js');
+      const source=await readFile(panelPath,'utf8');
+      const original="rate:$('rate').value==='leave'?prefs.rate:Number($('rate').value)";
+      if(!source.includes(original))throw new Error('Integration fault target changed');
+      await writeFile(panelPath,source.replace(original,'rate:1'));
+    }
     if(storageEventDelay){
       const manifest=JSON.parse(await readFile(path.join(ext,'manifest.json'),'utf8'));
       for(const entry of manifest.content_scripts)entry.js.splice(1,0,'test-delay.js');

@@ -16,3 +16,9 @@ profiles/
 .cache/
 playwright-report/
 test-results/
+
+storybook-static/
+design-report/
+design-test-results/
+design-fault-report/
+design-fault-results/
