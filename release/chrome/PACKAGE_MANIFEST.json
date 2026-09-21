@@ -1,20 +1,19 @@
 {
   "version": "0.4.0",
-  "signed": false,
-  "archive": "submeta-playback-preset-0.4.0-unsigned.zip",
-  "sha256": "94f5f862f6814f482b29c3b0cb243892656eefc9b54b141264a3a861b9c731ce",
+  "archive": "submeta-playback-preset-0.4.0-chrome.zip",
+  "sha256": "3e3f1c932b063b5c175288e0a13252ff0673b25fe3851ff137dc4824523c2184",
   "files": {
     "LICENSE": {
       "bytes": 1067,
       "sha256": "cf672d6738bf45a5e3fe21d7552c13637199dddb44a6aae254fd14c44bd5c64e"
     },
-    "README.md": {
-      "bytes": 5331,
-      "sha256": "71f441b592a53d188319fc9fe0c87f8f34497b50b310c5214f39173f3d73cc95"
-    },
     "background.js": {
       "bytes": 909,
       "sha256": "bc323caff0964c37902ed79789a41d48cac67d32bbd2bdeda6fa63133381f824"
+    },
+    "browser-api.js": {
+      "bytes": 1100,
+      "sha256": "c14ce3390705195043ca3548f9e79494248a4113210df8b92d79281b689ccf17"
     },
     "gif/background.js": {
       "bytes": 9162,
@@ -120,13 +119,9 @@
       "bytes": 1680,
       "sha256": "c9baf928a60ac50baba7b3360b7205da4aef5759fc41547a9dca3eca3b24a24a"
     },
-    "icons/icon.svg": {
-      "bytes": 408,
-      "sha256": "a949ea569ac2f9d8f35183ff79d6173f69aa47b3ebf56d1f77fb12c6546ab7e6"
-    },
     "manifest.json": {
-      "bytes": 1662,
-      "sha256": "864e303b0e615d57efd3635a60cf309c332fe5d81c6330aeff0f4bfb46d7c893"
+      "bytes": 1452,
+      "sha256": "9e17daaeda01f9f94ee5c1060b9da482387d70d5436da7d5eceae95e01edf9d0"
     },
     "panel.js": {
       "bytes": 10432,
@@ -135,6 +130,10 @@
     "player.js": {
       "bytes": 11792,
       "sha256": "aa1e4406123bc568b75b1c9053d6ab247073cb61d856210d865c708d7fa4c7a2"
+    },
+    "service-worker.js": {
+      "bytes": 95,
+      "sha256": "89ff9a5c21badb323064f75f5bf4c2d71a31e5e339f29f64aea65dffc28c9d02"
     },
     "shared.js": {
       "bytes": 1380,

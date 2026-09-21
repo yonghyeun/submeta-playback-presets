@@ -1,0 +1,29 @@
+<!doctype html><meta charset="utf-8"><title>GIF 클립보드 붙여넣기 확인</title>
+<style>body{font:18px system-ui;max-width:800px;margin:40px auto}#target{border:2px solid #27634b;padding:24px;min-height:140px}img{max-width:480px}pre{white-space:pre-wrap}</style>
+<h1>GIF 붙여넣기 확인</h1><p>이 페이지는 네트워크로 데이터를 보내거나 파일을 저장하지 않습니다.</p>
+<div id="target" contenteditable="true" aria-label="GIF 붙여넣기 영역">여기를 클릭하고 붙여넣기를 실행하세요.</div><pre id="report"></pre>
+<script>
+document.querySelector('#target').addEventListener('paste',async event=>{
+ event.preventDefault();
+ const types=[...event.clipboardData.types];
+ const html=event.clipboardData.getData('text/html');
+ const parsed=new DOMParser().parseFromString(html,'text/html');
+ const src=parsed.querySelector('img')?.getAttribute('src');
+ const target=document.querySelector('#target'), report=document.querySelector('#report');
+ if(src && /^data:image\/gif;base64,[A-Za-z0-9+/=]+$/.test(src)){
+  const bytes=Uint8Array.from(atob(src.split(',')[1]),c=>c.charCodeAt(0));
+  const hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(x=>x.toString(16).padStart(2,'0')).join('');
+  const image=document.createElement('img');image.alt='붙여넣은 애니메이션 GIF';image.src=src;target.replaceChildren(image);
+  report.textContent=`GIF 붙여넣기 성공\n${bytes.length} bytes\nSHA-256 ${hash}\n전달 형식: ${types.join(', ')}`;
+ }else{
+  const file=[...event.clipboardData.items].find(x=>x.kind==='file')?.getAsFile();
+  if(file){
+   const bytes=await file.arrayBuffer();
+   const hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(x=>x.toString(16).padStart(2,'0')).join('');
+   const image=document.createElement('img');image.alt='붙여넣은 파일';image.src=URL.createObjectURL(file);target.replaceChildren(image);
+   report.textContent=`파일 붙여넣기: ${file.type} (${file.size} bytes)\n이름: ${file.name}\nSHA-256 ${hash}\n전달 형식: ${types.join(', ')}`;
+  }
+  else report.textContent='지원하는 이미지 형식이 전달되지 않았습니다.';
+ }
+});
+</script>

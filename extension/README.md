@@ -48,3 +48,18 @@ Firefox Desktop 142 이상용 비공식 보조 확장입니다. 실제 확인 �
 Copyright (c) 2026 aebongbong. [MIT License](LICENSE).
 
 공개 지원 이메일: aaabonggg@gmail.com. 원본 프로젝트의 코드 변경은 PR로 제안하고 관리자 검토 후 병합합니다.
+
+## Chrome 배포 준비
+
+Chrome용 별도 ZIP과 설치·스토어 제출 안내는 [Chrome 제출 자료](../release/chrome/README.md)를 참고하세요.
+
+
+## 0.4.0 GIF 만들기
+
+플레이어 아래 GIF 만들기를 눌러 편집창을 엽니다. 썸네일 타임라인의 손잡이로 1–15초를 선택하거나 분:초 입력을 사용하세요. 생성 중에는 해당 탭을 유지합니다. GIF는 최대 480px, 10fps, 무음 반복 이미지이며 로컬에서 생성합니다.
+
+GIF 파일 저장은 기본적으로 브라우저 저장창을 사용합니다. Mac 보조 앱이 연결되면 선택한 폴더를 기억하고, 생성 직후 원본 GIF 파일을 클립보드에 복사합니다. PNG로 대체하지 않습니다. 저장 폴더 변경과 이번만 다른 위치에 저장도 지원합니다.
+
+Mac 보조 앱 설치와 제거: https://github.com/yonghyeun/submeta-playback-presets/blob/main/native/macos/gif-folder/INSTALL.md . Windows/Linux에는 보조 앱이 없으므로 일반 파일 저장을 사용하세요. 사진 보관함 저장은 포함하지 않습니다. 브라우저 확장 설치만으로 보조 앱이 설치되지는 않습니다.
+
+권한: storage는 설정 저장, downloads는 생성 GIF 파일 저장, nativeMessaging은 선택 설치한 Mac 보조 앱 연결에만 사용합니다. 선택한 프레임과 GIF는 개발자 서버로 전송하지 않습니다. Mac 클립보드용 GIF는 사용자 Library/Caches/Submeta GIF Clipboard에 보관합니다.

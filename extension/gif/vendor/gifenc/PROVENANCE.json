@@ -1,0 +1,18 @@
+{
+  "name": "gifenc",
+  "version": "1.0.3",
+  "license": "MIT",
+  "source": "https://registry.npmjs.org/gifenc/-/gifenc-1.0.3.tgz",
+  "integrity": "sha512-xdr6AdrfGBcfzncONUOlXMBuc5wJDtOueE3c5rdG0oNgtINLD+f2iFZltrBRZYzACRbKr+mSVU/x98zv2u3jmw==",
+  "files": {
+    "src/index.js": "cabba5e290b21e40611f1cb972c1e6fee912139b727a254aacb05605cbd61c5c",
+    "src/color.js": "41a914e3a2502ea3529414a730d6f9776f9e7f60aa2fba7c0459ccdaa8e5732c",
+    "src/constants.js": "ebbc17a4b34af7f141285bca39ad533fab33ca40a54f1ed024435421c58a2103",
+    "src/lzwEncode.js": "f25e485eda237d20c7780f1cd456c4b346b6dbff8e3f5215fb4ee5b32793b33a",
+    "src/palettize.js": "70f8e191d8f6f6e51bc6fc853a51f1b008c0a2fe144c4a3390b6342aaa9857bb",
+    "src/pnnquant2.js": "267a6034fee19ccf783a6ca6dc32bdb2ffea637e633abb6fd9929f8692ec932a",
+    "src/rgb-packing.js": "ff33b1c5fee53b07089109b12d828e2c039b38ad50976665b25637ea906d2f53",
+    "src/stream.js": "31f4a64498ff8bcd5d69c04f8c0dc7e07f235e4708bd52472981266201f83f41",
+    "LICENSE.md": "47bc590c39d8ccccfc544875a9faebf44bafa828ef20315b396b5d0629f0cfd6"
+  }
+}

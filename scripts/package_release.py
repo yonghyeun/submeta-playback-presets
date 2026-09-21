@@ -10,8 +10,13 @@ source = root / 'extension'
 manifest = json.loads((source / 'manifest.json').read_text())
 files = ['manifest.json', 'shared.js', 'background.js', 'panel.js', 'player.js', 'README.md', 'LICENSE',
          'icons/icon.svg', 'icons/icon-48.png', 'icons/icon-96.png', 'icons/icon-128.png']
+files += ['gif/' + name for name in ['config.js', 'capture.js', 'encoder-client.js', 'encoder-core.js', 'encoder-worker.js', 'encoder.html', 'encoder-page.js', 'native-folder.js', 'background.js', 'save.js', 'timeline.js', 'panel.js', 'launcher.js']]
+provenance = json.loads((source / 'gif/vendor/gifenc/PROVENANCE.json').read_text())
+files += ['gif/vendor/gifenc/PROVENANCE.json'] + ['gif/vendor/gifenc/' + name for name in provenance['files']]
+for name, digest in provenance['files'].items():
+    assert hashlib.sha256((source / 'gif/vendor/gifenc' / name).read_bytes()).hexdigest() == digest
 assert (source / 'LICENSE').read_bytes() == (root / 'LICENSE').read_bytes()
-assert manifest['permissions'] == ['storage']
+assert manifest['permissions'] == ['storage', 'downloads', 'nativeMessaging']
 assert manifest['browser_specific_settings']['gecko']['data_collection_permissions'] == {'required': ['none']}
 referenced = [*manifest['icons'].values(), *manifest['background']['scripts']]
 referenced += [f for entry in manifest['content_scripts'] for f in entry['js']]
