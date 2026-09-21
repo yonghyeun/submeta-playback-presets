@@ -53,7 +53,9 @@ test('error recovery and loading controls expose honest state',async({page})=>{
   for(const name of ['배속','CC','언어'])await expect(page.getByRole('combobox',{name,exact:true})).toBeDisabled();
   await expect(page.getByRole('region')).toHaveAttribute('aria-busy','true');
   await open(page,'error');await expect(page.getByRole('status')).toContainText('저장 실패');
-  await page.getByRole('button',{name:'다시 적용'}).click();await expect(page.getByRole('status')).toContainText('저장됨');
+  await page.getByRole('button',{name:'다시 적용'}).click();await expect(page.getByRole('status')).toContainText('저장 실패');
+  await page.getByRole('combobox',{name:'배속',exact:true}).selectOption('1.5');await expect(page.getByRole('status')).toContainText('저장됨');
+  await open(page,'disconnected');await page.getByRole('button',{name:'다시 적용'}).click();await expect(page.getByRole('status')).toContainText('자막: 한국어 적용됨');
   await open(page,'unavailable');await expect(page.getByRole('combobox',{name:'언어',exact:true})).toHaveValue('ko');
   await expect(page.getByRole('status')).toContainText('선택 언어 미제공');
 });

@@ -26,15 +26,22 @@ export function demo({scenario = 'ready', theme = 'dark', expanded, mode = 'open
   };
   for (const key of ['enabled','manageSpeed','captions']) if (key in preset) state.prefs[key] = preset[key];
   if (expanded !== undefined) state.expanded = expanded;
+  function describeAppliedState() {
+    if (!state.connected) {state.captionStatus = '플레이어 연결 끊김 — 페이지를 새로고침해 주세요';return;}
+    state.speedStatus = state.suspended ? '배속: 현재 영상 해제' : `배속: ${state.prefs.manageSpeed ? state.prefs.rate + '× 적용됨' : '기본값'}`;
+    const language = state.languages.find(item => item.value === state.prefs.language);
+    state.captionStatus = state.prefs.captions === 'on'
+      ? (language && !language.label.includes('미제공') ? `자막: ${language.label} 적용됨` : '자막: 선택 언어 미제공')
+      : `자막: ${state.prefs.captions === 'off' ? '꺼짐' : '기본값'}`;
+  }
   const view = SubmetaUI.mountPlaybackSettings(root, {state, actions:{
     change(_id, values) {
       state = {...state, loading:false, suspended:false, prefs:{...state.prefs, ...values, rate:values.rate === 'leave' ? state.prefs.rate : Number(values.rate)}, saved:'저장됨 · 이 브라우저에 유지'};
-      state.speedStatus = `배속: ${state.prefs.manageSpeed ? state.prefs.rate + '× 적용됨' : '기본값'}`;
-      state.captionStatus = `자막: ${values.captions === 'on' ? (values.language === 'ko' ? '한국어' : 'English') + ' 적용됨' : '꺼짐'}`;
+      describeAppliedState();
       view.update(state);
     },
-    suspend() {state.suspended = !state.suspended;state.speedStatus = state.suspended ? '배속: 현재 영상 해제' : '배속: 1.25× 적용됨';view.update(state);},
-    retry() {state = {...state, connected:true, saved:'저장됨 · 이 브라우저에 유지', captionStatus:'자막: 한국어 적용됨'};view.update(state);},
+    suspend() {state.suspended = !state.suspended;describeAppliedState();view.update(state);},
+    retry() {state.connected = true;describeAppliedState();view.update(state);},
   }});
   // After the initial state, native details owns its open/closed state.
   delete state.expanded;
