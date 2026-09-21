@@ -20,4 +20,5 @@ if [ -d .cache/ms-playwright/chromium-1234 ]; then
 fi
 "$test_node" tests/extension.test.mjs
 "$test_node" tests/player.test.mjs
+"$test_node" tests/gif-export.test.mjs
 exec "$test_node" node_modules/playwright/cli.js test "$@"

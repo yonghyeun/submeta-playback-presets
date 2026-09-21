@@ -16,6 +16,7 @@ for entry in manifest['content_scripts']:
     entry['js'].insert(0, 'browser-api.js')
 shared = ['shared.js', 'background.js', 'panel.js', 'player.js', 'LICENSE',
           'icons/icon-48.png', 'icons/icon-96.png', 'icons/icon-128.png']
+shared += ['ui/tokens.js', 'ui/primitives.js', 'ui/playback-settings.js']
 shared += ['gif/' + name for name in ['config.js', 'capture.js', 'encoder-client.js', 'encoder-core.js', 'encoder-worker.js', 'encoder.html', 'encoder-page.js', 'native-folder.js', 'background.js', 'save.js', 'timeline.js', 'panel.js', 'launcher.js']]
 provenance = json.loads((source / 'gif/vendor/gifenc/PROVENANCE.json').read_text())
 shared += ['gif/vendor/gifenc/PROVENANCE.json'] + ['gif/vendor/gifenc/' + name for name in provenance['files']]

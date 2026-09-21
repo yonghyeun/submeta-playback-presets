@@ -1,7 +1,7 @@
 {
-  "version": "0.4.0",
-  "archive": "submeta-playback-preset-0.4.0-chrome.zip",
-  "sha256": "9187ba14da44019943551f41660c7dfc6c1d5860e174f2f45ad8d17c394be0e9",
+  "version": "0.4.1",
+  "archive": "submeta-playback-preset-0.4.1-chrome.zip",
+  "sha256": "7c4fd3a6095be68eb4481a6aa0c2af90ce43072635eb8081576defef0051da6b",
   "files": {
     "LICENSE": {
       "bytes": 1067,
@@ -120,12 +120,12 @@
       "sha256": "c9baf928a60ac50baba7b3360b7205da4aef5759fc41547a9dca3eca3b24a24a"
     },
     "manifest.json": {
-      "bytes": 1857,
-      "sha256": "8012272991abc8ed1abcee981e5d8f00d53262911a081a62609be9628b103acc"
+      "bytes": 1944,
+      "sha256": "a3b7656c15dcef70eb7c98e94c45cc4394ddf9f5b1dac7c1afaf3bfd9c35823c"
     },
     "panel.js": {
-      "bytes": 10432,
-      "sha256": "fdd5946d7ec9c0b2aac583cf4b67eba4e9d03012dd71b9e3e46601431f7666bb"
+      "bytes": 6197,
+      "sha256": "08dd756cf3996bd12f46e952be989d118de800d5b7da3d6f690a9dd7f9ee4922"
     },
     "player.js": {
       "bytes": 11792,
@@ -138,6 +138,18 @@
     "shared.js": {
       "bytes": 1380,
       "sha256": "96850722391d1f253927e8406c4cb45e7e3d5c6550eb4200f531bf775fcda5fb"
+    },
+    "ui/playback-settings.js": {
+      "bytes": 6423,
+      "sha256": "5339abf2b1582b074a5b27ef17e494b24365231620d122a440c453be7383e6f3"
+    },
+    "ui/primitives.js": {
+      "bytes": 2441,
+      "sha256": "f44af6cc044c6e3fc635ea93a07cf55fc6d44d473a3f8700d19afdd94e30c9d3"
+    },
+    "ui/tokens.js": {
+      "bytes": 3312,
+      "sha256": "75a03fc4f349169c53fba4099b59141842aa9c4d02c4426bc3e557de5bf555c7"
     }
   }
 }

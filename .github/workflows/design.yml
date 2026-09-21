@@ -1,0 +1,61 @@
+name: Design system
+
+on:
+  push:
+    branches: [main, codex/design-system-p4]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: design-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ui:
+    name: Design validation
+    runs-on: ubuntu-24.04
+    container:
+      image: mcr.microsoft.com/playwright:v1.62.1-noble
+      options: --ipc=host
+    timeout-minutes: 15
+    env:
+      CI: 'true'
+      TZ: Asia/Seoul
+      STORYBOOK_DISABLE_TELEMETRY: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.19.0'
+          cache: npm
+      - run: npm ci
+      - run: npm run design:check
+      - run: npm run storybook:build
+      - run: npm run test:ui
+      - run: npm run test:design:guards
+      - name: Upload design evidence
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: design-evidence-linux
+          path: |
+            design-report/
+            design-test-results/
+            design-fault-report/
+            design-fault-results/
+          retention-days: 7
+          if-no-files-found: error
+      - name: Upload browsable component catalogue
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: storybook-preview
+          path: storybook-static/
+          retention-days: 7
+          if-no-files-found: ignore

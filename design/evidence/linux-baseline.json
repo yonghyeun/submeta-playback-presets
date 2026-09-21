@@ -1,0 +1,57 @@
+{
+  "sourceRun": "https://github.com/yonghyeun/submeta-playback-presets/actions/runs/35618198081",
+  "sourceCommit": "982e8db",
+  "source": "failure screenshots on missing-reference checks; viewport matches full .scenario bounds",
+  "environment": "mcr.microsoft.com/playwright:v1.62.1-noble, linux-x64, Node 24.19.0, Noto Sans KR 5.3.0",
+  "review": "Representative desktop ready, mobile error/loading and tablet light reviewed visually. All PNG dimensions validated. Normal CI comparison must pass before P4 completion.",
+  "images": [
+    {
+      "file": "ready-390.png",
+      "sha256": "eee80df85f9a32c1c3faeeca1983ee8e4905071a6ab082b71dd2944a72814078"
+    },
+    {
+      "file": "loading-390.png",
+      "sha256": "136d3ddb90f3c4c8967409ed0b37e8c4d1c0a2e0b6274866e0bde7345253a158"
+    },
+    {
+      "file": "error-390.png",
+      "sha256": "561e5d406be6345fbe594add74a6c58fc140df13d6b8e16b0099dc97d86dd977"
+    },
+    {
+      "file": "light-390.png",
+      "sha256": "fb5663f4093e64be17011007c4e29f7777cfaa669077c5cd9baf0da9513c8791"
+    },
+    {
+      "file": "ready-768.png",
+      "sha256": "31325c290105b7cdaf05f6052bc16bc3a2daf2a385996b5725cddca7e3f083e8"
+    },
+    {
+      "file": "loading-768.png",
+      "sha256": "5b8063dbfd54eb819afd148d756902580879746bed6900cc7572c2d268770407"
+    },
+    {
+      "file": "error-768.png",
+      "sha256": "f5b566cbc823f79fcdc11ac90e1e4954bc23bf02c4d699aa2e7f6f9883e760b0"
+    },
+    {
+      "file": "light-768.png",
+      "sha256": "76bd4686a1177c5ed121273feed35d148119ec9e6fcb9d316d1e7c3120314b50"
+    },
+    {
+      "file": "ready-1100.png",
+      "sha256": "8204c9a1bb7b176b4d31787c2cf23fc0cf3abd367b5a8f376d337df7b83f1015"
+    },
+    {
+      "file": "loading-1100.png",
+      "sha256": "8f44342e6a8843073cad33442c618c2c310d48d3a0453a31010e36713f89b869"
+    },
+    {
+      "file": "error-1100.png",
+      "sha256": "9a304e47e2890ffb93b4f97e9d499e6d04ec361541999231c0bca9e960825fa9"
+    },
+    {
+      "file": "light-1100.png",
+      "sha256": "3322011fe3327b90d0a031613dc6eab0ce8fb6dccb351a953c967979e0e87932"
+    }
+  ]
+}

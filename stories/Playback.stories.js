@@ -1,0 +1,13 @@
+import {scene} from './playback-demo.js';
+export default {id:'playback', title:'재생 설정', render:args => scene(args)};
+export const Ready = {name:'01 · 기본 설정', args:{scenario:'ready'}};
+export const Loading = {name:'02 · 불러오는 중', args:{scenario:'loading'}};
+export const Saving = {name:'03 · 저장 중', args:{scenario:'saving'}};
+export const Error = {name:'04 · 저장 실패', args:{scenario:'error'}};
+export const Disabled = {name:'05 · 설정 유지 꺼짐', args:{scenario:'disabled'}};
+export const Unavailable = {name:'06 · 언어 미제공', args:{scenario:'unavailable'}};
+export const Disconnected = {name:'07 · 연결 실패', args:{scenario:'disconnected'}};
+export const Suspended = {name:'08 · 현재 영상 해제', args:{scenario:'suspended'}};
+export const Defaults = {name:'09 · 처음 사용하는 상태', args:{scenario:'defaults'}};
+export const Light = {name:'10 · 밝은 테마 비교', args:{scenario:'ready',theme:'light',expanded:true}};
+export const ClosedRoot = {name:'11 · 닫힌 Shadow DOM', args:{scenario:'ready',mode:'closed',expanded:true}};

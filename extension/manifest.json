@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Playback Presets for Submeta",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "비공식 Submeta 보조 확장: 배속·자막 설정 유지, 영상 구간 GIF 생성 및 저장.",
   "browser_specific_settings": {
     "gecko": {
@@ -37,6 +37,9 @@
       ],
       "js": [
         "shared.js",
+        "ui/tokens.js",
+        "ui/primitives.js",
+        "ui/playback-settings.js",
         "panel.js",
         "gif/launcher.js"
       ],
