@@ -14,7 +14,7 @@
   }
   function refresh(key, job) { clearTimeout(job.timer); job.timer = setTimeout(() => release(key), 30000); }
   api.runtime.onMessage.addListener((message, sender) => {
-    if (!['gif:ui-ready', 'gif:ui-open', 'gif:ui-close', 'gif:ui-focus', 'gif:ui-dismiss', 'gif:folder-status', 'gif:folder-choose', 'gif:save-begin', 'gif:save-chunk', 'gif:save-finish', 'gif:save-abort'].includes(message?.type)) return undefined;
+    if (!['gif:platform', 'gif:ui-ready', 'gif:ui-open', 'gif:ui-close', 'gif:ui-focus', 'gif:ui-dismiss', 'gif:folder-status', 'gif:folder-choose', 'gif:save-begin', 'gif:save-chunk', 'gif:save-finish', 'gif:save-abort'].includes(message?.type)) return undefined;
     return handle(message, sender);
   });
   async function handle(message, sender) {
@@ -41,6 +41,7 @@
     }
     if (sender.id !== api.runtime.id || !sender.tab || !Number.isInteger(sender.frameId) || sender.frameId <= 0 ||
         origin !== 'https://iframe.cloudflarestream.com') return {error: 'sender-invalid'};
+    if (message.type === 'gif:platform') return api.runtime.getPlatformInfo();
     const key = `${sender.tab.id}:${sender.frameId}`;
     if (message.type === 'gif:folder-status' || message.type === 'gif:folder-choose') {
       if (message.type === 'gif:folder-choose' && jobs.has(key)) return {error: 'save-busy'};

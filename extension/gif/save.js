@@ -3,7 +3,7 @@
   const api = globalThis.browser || globalThis.chrome;
   globalThis.SubmetaGif.pasteInstruction = async () => {
     try {
-      const {os} = await api.runtime.getPlatformInfo();
+      const {os} = await api.runtime.sendMessage({type: 'gif:platform'});
       if (os === 'mac') return '⌘V로 붙여넣으세요.';
       if (['win', 'linux', 'openbsd', 'cros'].includes(os)) return 'Ctrl+V로 붙여넣으세요.';
     } catch { /* Keep copy success independent of platform detection. */ }

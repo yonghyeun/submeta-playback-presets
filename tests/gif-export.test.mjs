@@ -217,3 +217,17 @@ if (isRelease) {
   assert.equal(downloaded.saveAs,true);
   console.log('Chrome service-worker download fallback preserves validated GIF bytes');
 }
+
+if (isRelease) {
+  sandbox.browser.runtime.getPlatformInfo = async () => ({os:'mac'});
+  assert.equal((await handle({type:'gif:platform'}, sender)).os, 'mac');
+  assert.equal((await handle({type:'gif:platform'}, parent)).error, 'sender-invalid');
+  const platformClient = {SubmetaGif:{}, browser:{runtime:{async sendMessage(){return {os:'mac'};}}}};
+  vm.runInNewContext(readFileSync(new URL('save.js',gifBase),'utf8'),platformClient);
+  assert.equal(await platformClient.SubmetaGif.pasteInstruction(),'⌘V로 붙여넣으세요.');
+  platformClient.browser.runtime.sendMessage=async()=>({os:'win'});
+  assert.equal(await platformClient.SubmetaGif.pasteInstruction(),'Ctrl+V로 붙여넣으세요.');
+  platformClient.browser.runtime.sendMessage=async()=>{throw new Error('unavailable');};
+  assert.equal(await platformClient.SubmetaGif.pasteInstruction(),'사용할 앱에서 붙여넣기를 선택하세요.');
+  console.log('OS paste hint uses the authorized background API and safe fallback');
+}

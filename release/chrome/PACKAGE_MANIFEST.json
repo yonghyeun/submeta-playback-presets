@@ -1,7 +1,7 @@
 {
   "version": "0.4.0",
   "archive": "submeta-playback-preset-0.4.0-chrome.zip",
-  "sha256": "3e3f1c932b063b5c175288e0a13252ff0673b25fe3851ff137dc4824523c2184",
+  "sha256": "b7c096ea4f73715b61aef973d4688a43183463062120ca7eed659cadb0284694",
   "files": {
     "LICENSE": {
       "bytes": 1067,
@@ -16,8 +16,8 @@
       "sha256": "c14ce3390705195043ca3548f9e79494248a4113210df8b92d79281b689ccf17"
     },
     "gif/background.js": {
-      "bytes": 9162,
-      "sha256": "940aee31f4a481b39b3a747230e1bba5cf3c84d3b1e269475e58144e3700286f"
+      "bytes": 9257,
+      "sha256": "598c7b4793f4fe7c0ade42130b1b096b75b47924c8c08da91bba459fcb7e1134"
     },
     "gif/capture.js": {
       "bytes": 8595,
@@ -60,8 +60,8 @@
       "sha256": "6cb7f8ec89cfd1d54fcd05f7c4e847a89b37db6e8fe1e8b28eca5fabdaad4151"
     },
     "gif/save.js": {
-      "bytes": 1927,
-      "sha256": "96a5ba1405755fb4596cd05b9291144b8a2391617ad7afaf6997bbccc20614f4"
+      "bytes": 1945,
+      "sha256": "476fdb0e375409bfe25e2f79deb3c5569a32393034cc25d34b1c06e8dd7d70a5"
     },
     "gif/timeline.js": {
       "bytes": 14287,
