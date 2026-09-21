@@ -4,6 +4,8 @@
 
 2026-09-22 후속: 실제 구현은 [진행 파이프라인](DESIGN_IMPLEMENTATION_PIPELINE.md)의 단계와 완료 조건을 따르며, 상태는 [진행표](DESIGN_PROGRESS.md)에 기록한다.
 
+P4.5 후속 결정: 공통 UI를 React/TypeScript로 전환하고 Storybook React Vite의 Controls·Docs를 연결했다. 아래 초기 조사와 선택지는 역사적 설계 근거이며 현재 구현은 [React 전환 기록](DESIGN_REACT_MIGRATION.md)을 따른다.
+
 ## 1. 확인 범위와 버전
 
 앱에 등록된 프로젝트와 현재 작업 폴더에서 확인한 프로젝트는 Submeta 하나다. 다른 프로젝트의 경로를 받으면 아래 규칙의 공통성과 예외를 함께 검토한다. 원격 최신 커밋, 스토어 공개 상태는 이번 조사에서 조회하지 않았다.

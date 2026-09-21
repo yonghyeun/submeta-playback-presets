@@ -66,6 +66,6 @@ Mozilla linter는 React DOM의 `dangerouslySetInnerHTML` 구현 내부에서 경
 - 의존성 감사: 새 공지 없음. 기존 image-size 공지 2건의 영향 3개 의존성은 기존 검토 기한 2026-10-11로 유지한다.
 - Chrome/Firefox 패키지 재생성 및 해시 기록 갱신.
 
-고정 Linux CI의 이번 변경 결과는 PR #5의 검사와 진행표에 기록한다. 과거 P4의 CI 성공을 이번 변경의 성공으로 취급하지 않는다.
+기능 코드 `b0908ae`의 [고정 Linux CI](https://github.com/yonghyeun/submeta-playback-presets/actions/runs/35622358348)도 Design validation / Extension validation 모두 성공했다. UI 41개, 오류 감지 5종, 기존 단위·감사·lint·제품 E2E 12개와 패키지 해시 일치를 검증했다. 이후 문서만 바뀐 커밋과 기능 검증 기준을 구분한다.
 
 이번 자동 통합 검사는 로컬 모의 영상과 실제 Chrome 확장 ZIP을 사용했다. 로그인된 실제 Submeta, 실제 Firefox, GIF 편집기의 React 전환은 이번 완료 범위에 포함되지 않는다. 다음 적용 대상은 P5의 GIF 공통 UI다.

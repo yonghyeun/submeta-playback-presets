@@ -29,9 +29,9 @@
 
 ## 구현 경계와 예외
 
-`extension/ui/`는 공통 UI와 생성된 토큰, `extension/panel.js`는 browser storage·플레이어 연결 어댑터다. Storybook은 같은 렌더러에 고정 상태와 데모 콜백을 공급한다. 데모가 실제 저장·영상 연결의 증거는 아니다. 실제 동작은 제출 ZIP 기반 E2E로 확인한다.
+P4.5에서 `ui/`의 React 컴포넌트·타입 계약을 공통 원본으로 채택했다. `extension/ui/`는 생성된 토큰·제품 번들·기본 스타일이며 `extension/panel.js`는 browser storage·플레이어 연결 어댑터다. Storybook은 같은 React 컴포넌트에 args와 데모 콜백을 공급한다. 데모가 실제 저장·영상 연결의 증거는 아니다. 실제 동작은 제출 ZIP 기반 E2E로 확인한다. 런타임 용량과 React DOM 내부 lint 경고의 정확한 해시·위치 예외는 [React 전환 기록](DESIGN_REACT_MIGRATION.md)을 따른다.
 
-토큰 검사는 이번에 이전한 `primitives.js`, `playback-settings.js`의 색·px 값·CSS 토큰 참조를 검사한다. 레이아웃 비율, 0, 100%, 텍스트 길이 70ch, 체크 표시 회전은 구조값으로 허용한다. 호스트에서 측정하는 `--preset-gutter`는 의도적인 제품 어댑터다. GIF 파일들의 스타일과 Storybook 설명 페이지는 현재 제품 토큰 규칙의 검사 대상이 아니다.
+토큰 검사는 `extension/ui/primitives.js`와 `ui/`의 모든 TypeScript 소스에서 색·px 값·CSS 토큰 참조를 검사한다. 타입과 번들의 재빌드 일치도 확인한다. 레이아웃 비율, 0, 100%, 텍스트 길이 70ch, 체크 표시 회전은 구조값으로 허용한다. 호스트에서 측정하는 `--preset-gutter`는 의도적인 제품 어댑터다. GIF 파일들의 스타일과 Storybook 설명 페이지는 현재 제품 토큰 규칙의 검사 대상이 아니다.
 
 서로 다른 출처의 iframe에 토큰을 명시적으로 로드하는 검사를 추가했다. 열린 root·닫힌 root·light DOM의 스타일 적용은 재사용성 검사이며, GIF 편집기 통합 완료의 증거로 보지 않는다. closed root의 키보드 결과는 브라우저 접근성 트리로 읽으며 자동 axe 검사는 열린 사례에서 수행한다.
 
