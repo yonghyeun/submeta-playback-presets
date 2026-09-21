@@ -5,11 +5,10 @@
   const host = document.createElement('section'); host.id = 'submeta-presets';
   const root = host.attachShadow({mode:'open'});
   const view = SubmetaUI.mountPlaybackSettings(root, {actions: {
-    change: id => changePreference(id),
+    change: (id, values) => changePreference(id, values),
     suspend: () => {suspended=!suspended;render();configure(true);},
     retry: () => {if (!frameId){bindAttempts=0;bind();}else configure(true);}
   }});
-  const $ = view.get;
   let prefs = {...P.defaults}, loaded = false, frame, frameSrc = '', path = '', token = '', frameId, suspended = false;
   let labels = [], bindTimer, bindAttempts = 0, scanTimer, saveChain = Promise.resolve(), pendingSaves = 0;
   const ownRevisions=new Set();
@@ -61,9 +60,9 @@
       text('speedStatus',`배속: ${m.speed}`);text('captionStatus',`자막: ${m.captions}`);
     }
   });
-  function changePreference(id) {
+  function changePreference(id, values) {
     if (!loaded) return;
-    prefs=P.normalize({...prefs,enabled:$('enabled').checked,manageSpeed:$('rate').value!=='leave',rate:$('rate').value==='leave'?prefs.rate:Number($('rate').value),captions:$('captions').value,language:$('language').value,revision:crypto.randomUUID()});
+    prefs=P.normalize({...prefs,...values,rate:values.rate==='leave'?prefs.rate:Number(values.rate),revision:crypto.randomUUID()});
     const next={...prefs}; pendingSaves++;ownRevisions.add(next.revision);
     if(ownRevisions.size>128)ownRevisions.delete(ownRevisions.values().next().value);
     if(id!=='enabled'){suspended=false;configure(true,true);}else configure(true);

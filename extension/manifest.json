@@ -39,6 +39,7 @@
         "shared.js",
         "ui/tokens.js",
         "ui/primitives.js",
+        "ui/react-runtime.js",
         "ui/playback-settings.js",
         "panel.js",
         "gif/launcher.js"

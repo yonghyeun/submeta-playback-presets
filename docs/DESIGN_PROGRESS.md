@@ -3,7 +3,7 @@
 기준일: 2026-09-22. [실행 파이프라인](DESIGN_IMPLEMENTATION_PIPELINE.md)에 따라 갱신한다.
 
 현재: P0~P4 완료. 최신 main의 0.4.1 업데이트를 통합했고, 로컬 및 고정 Linux 환경의 CI 검증을 통과했다.
-다음 행동: 사용자가 P4 결과 화면을 검토한 뒤 요청하면 P5의 DS-501부터 진행한다. 이번 작업은 P4에서 종료한다.
+추가 요청: P4.5 React 전환 구현 및 로컬 검증 완료. 이번 변경의 Linux CI 확인 중. 다음 적용 대상은 P5의 DS-501이다.
 
 ## 작업 목록
 
@@ -17,7 +17,10 @@
 | DS-302 | P3 | Storybook 연결과 재생 패널 상태 사례 | DS-301 | 완료 | 재생 상태 11개 + 시작/기본 요소 사례 |
 | DS-401 | P4 | UI 검사·고정 환경·기준 이미지 구축 | DS-302 | 완료 | Mac/Linux 기준 각 12개; Linux UI 29/29 |
 | DS-402 | P4 | CI·통합 진입점 및 실패 감지 실험 | DS-401 | 완료 | [최종 CI 성공](https://github.com/yonghyeun/submeta-playback-presets/actions/runs/35619660448), 오류 5종 감지 |
-| DS-501 | P5 | GIF 공통 UI·상태 사례 적용 | DS-402 | 대기 | 모달·타임라인·저장 상태 |
+| DS-451 | P4.5 | 공통 React 기본/조합 컴포넌트·제품 어댑터 | DS-402 | 완료 | [React 전환 기록](DESIGN_REACT_MIGRATION.md), 실제 ZIP E2E 12/12 |
+| DS-452 | P4.5 | React Storybook·Controls·자동 문서 | DS-451 | 완료 | 30 stories/7 docs, UI 41/41, 기준 이미지 변경 없음 |
+| DS-453 | P4.5 | 번들/타입 계약·수명주기·검사 회귀 | DS-452 | CI 확인 중 | 로컬 계약 5/5, 의도적 오류 5종 감지 |
+| DS-501 | P5 | GIF 공통 UI·상태 사례 적용 | DS-453 | 대기 | 모달·타임라인·저장 상태 |
 | DS-502 | P5 | GIF 키보드·슬롯·플레이어 회귀 검증 | DS-501 | 대기 | closed root 범위 구분 |
 | DS-601 | P6 | 실제 Firefox/Chrome·Mac 지원 경로 검수 | DS-502 | 대기 | 실제 환경 접근 시 확인 |
 | DS-602 | P6 | 하네스·실행 가이드·최종 증거 정리 | DS-601 | 대기 | 문서대로 실행 재현 |

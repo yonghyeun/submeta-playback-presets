@@ -24,6 +24,18 @@ test('generation is deterministic and product manifest loads UI before controlle
   const manifest = JSON.parse(readFileSync(new URL('../extension/manifest.json', import.meta.url)));
   const scripts = manifest.content_scripts.find(item => item.matches.includes('https://submeta.io/*')).js;
   assert.ok(scripts.indexOf('ui/tokens.js') < scripts.indexOf('ui/primitives.js'));
-  assert.ok(scripts.indexOf('ui/primitives.js') < scripts.indexOf('ui/playback-settings.js'));
+  assert.ok(scripts.indexOf('ui/primitives.js') < scripts.indexOf('ui/react-runtime.js'));
+  assert.ok(scripts.indexOf('ui/react-runtime.js') < scripts.indexOf('ui/playback-settings.js'));
   assert.ok(scripts.indexOf('ui/playback-settings.js') < scripts.indexOf('panel.js'));
+});
+
+test('React vendor exception never permits new application warnings or changed runtime bytes', async () => {
+  const {validateLintReport} = await import('../scripts/lint-policy.mjs');
+  const baseline = JSON.parse(readFileSync(new URL('../scripts/react-lint-baseline.json',import.meta.url)));
+  const runtime = readFileSync(new URL('../extension/ui/react-runtime.js',import.meta.url));
+  const report = {errors:[],notices:[],warnings:baseline.warnings};
+  assert.equal(validateLintReport(report,runtime),2);
+  assert.throws(() => validateLintReport({...report,warnings:[...report.warnings,{...report.warnings[0],file:'panel.js'}]},runtime),/New or changed/);
+  assert.throws(() => validateLintReport({...report,errors:[{code:'MANIFEST_CONTENT_SCRIPT_FILE_NOT_FOUND'}]},runtime),/lint failed/);
+  assert.throws(() => validateLintReport(report,Buffer.concat([runtime,Buffer.from('changed')])),/runtime changed/);
 });

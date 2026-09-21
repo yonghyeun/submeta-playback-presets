@@ -3,6 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 import {readFileSync} from 'node:fs';
 const tokenScript = readFileSync(new URL('../../extension/ui/tokens.js',import.meta.url),'utf8');
 const controlsScript = readFileSync(new URL('../../extension/ui/primitives.js',import.meta.url),'utf8');
+const runtimeScript = readFileSync(new URL('../../extension/ui/react-runtime.js',import.meta.url),'utf8');
 const rendererScript = readFileSync(new URL('../../extension/ui/playback-settings.js',import.meta.url),'utf8');
 
 async function open(page, state = 'ready') {
@@ -66,7 +67,7 @@ test('tokens and renderer work in a separate-origin frame, light DOM and closed 
   await page.evaluate(()=>{const frame=document.createElement('iframe');frame.src='https://design-frame.invalid/';frame.title='다른 출처 렌더러';document.body.append(frame);});
   await expect.poll(()=>page.frames().some(item=>item.url().startsWith('https://design-frame.invalid'))).toBe(true);
   const isolated=page.frames().find(item=>item.url().startsWith('https://design-frame.invalid'));
-  for(const content of [tokenScript,controlsScript,rendererScript])await isolated.addScriptTag({content});
+  for(const content of [tokenScript,controlsScript,runtimeScript,rendererScript])await isolated.addScriptTag({content});
   const result=await isolated.evaluate(()=>{
     const read=[];
     for(const mode of ['light','open','closed']){

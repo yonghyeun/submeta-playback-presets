@@ -1,0 +1,18 @@
+{
+  "reason": "React DOM implements the upstream dangerouslySetInnerHTML API. Application UI forbids that API. Only these exact diagnostics in the reproducibly built pinned runtime are accepted; every file is still scanned.",
+  "runtimeSha256": "171bd2e36f160f3d87c8a22803eb0cea9620e93f8b5a329998b87b3a3463f57a",
+  "warnings": [
+    {
+      "code": "UNSAFE_VAR_ASSIGNMENT",
+      "file": "ui/react-runtime.js",
+      "line": 50,
+      "column": 1816
+    },
+    {
+      "code": "UNSAFE_VAR_ASSIGNMENT",
+      "file": "ui/react-runtime.js",
+      "line": 50,
+      "column": 4731
+    }
+  ]
+}

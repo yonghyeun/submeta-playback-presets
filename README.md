@@ -10,7 +10,7 @@ Submeta 기존 강의 플레이어의 배속과 자막 설정을 영상마다 �
 
 ## 디자인 시스템 개발
 
-공통 재생 패널과 상태별 사례를 Storybook에서 확인할 수 있습니다. 현재 작업 폴더에서는 `./scripts/design-local.sh storybook`, 일반 환경에서는 `npm run storybook`을 실행하세요. [화면·검사 실행 안내](docs/DESIGN_RUNBOOK.md) · [진행표](docs/DESIGN_PROGRESS.md).
+제품과 공유하는 React 컴포넌트, 입력값을 바꾸는 Controls, 사용 문서와 상태별 사례를 Storybook에서 확인할 수 있습니다. 현재 작업 폴더에서는 `./scripts/design-local.sh storybook`, 일반 환경에서는 `npm run storybook`을 실행하세요. [화면·검사 실행 안내](docs/DESIGN_RUNBOOK.md) · [진행표](docs/DESIGN_PROGRESS.md).
 
 ## 초기 조사 기록 — 2026-09-06
 

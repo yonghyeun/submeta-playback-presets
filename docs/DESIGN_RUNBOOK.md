@@ -12,9 +12,10 @@ npm run storybook
 
 - **시작**: 디자인 철학, 조작 가능한 재생 패널, 상태 비교, 색상 토큰, 밝은 테마, 변경 전 화면.
 - **재생 설정**: 기본/불러오는 중/저장 중/실패/유지 꺼짐/언어 미제공/연결 실패/현재 영상 해제/처음 사용/밝은 테마/닫힌 root.
-- **기본 요소**: 버튼, 체크박스, 선택 입력, 상태 문구.
+- **조합 요소**: PlaybackSettings의 실제 props, 상태, 이벤트 계약과 Controls.
+- **기본 요소**: Button, Checkbox, SelectField, StatusMessage, Disclosure. 각 Docs에서 사용 원칙과 입력 계약을 보고 Controls로 값을 바꾼다.
 
-Storybook의 입력은 데모 상태를 바꾸며 실제 계정이나 브라우저 설정을 저장하지 않는다. 제품과 동일한 렌더러를 사용한다.
+Storybook의 입력은 데모 상태를 바꾸며 실제 계정이나 브라우저 설정을 저장하지 않는다. 제품과 동일한 React 컴포넌트를 사용한다. 구조와 검사 예외는 [React 전환 기록](DESIGN_REACT_MIGRATION.md)을 참고한다.
 
 ## 검사 실행
 
@@ -45,7 +46,7 @@ HTML 보고서는 `file://`로 열기보다 위 보고서 명령으로 연다. C
 
 1. `DESIGN_PROGRESS.md`에서 작업을 선택하고 수용 기준을 기록한다.
 2. 디자인 값은 `design/tokens.json`에서 수정하고 `npm run design:generate`를 실행한다.
-3. 제품 렌더러를 수정하고 대응하는 Storybook 상태 사례를 추가한다.
+3. `ui/`의 React 컴포넌트와 대응하는 `stories/*.stories.tsx` 사례를 수정한 뒤 `npm run ui:build`를 실행한다. 생성된 `extension/ui/playback-settings.js`와 `react-runtime.js`를 직접 편집하지 않는다.
 4. `npm run test:design`을 실행하고 실패 화면을 검토한다.
 5. 의도한 시각 변화만 해당 플랫폼에서 `npm run test:ui:update`로 반영하고 diff를 검토한다. 다른 OS의 이미지를 복사해 통과시키지 않는다.
 6. 검증 증거와 예외를 기록하고 PR에 전후 화면을 첨부한다.

@@ -21,6 +21,7 @@ npm test
 npm run lint:extension
 ```
 
+- 재생 UI 원본: `ui/`의 React/TypeScript 컴포넌트. UI·토큰 변경 후 `npm run ui:build`, 검증은 `npm run test:design`을 실행합니다. [디자인 실행 안내](docs/DESIGN_RUNBOOK.md)를 따릅니다.
 - 배포용 코드: `extension/`. Chrome 호환 계층은 `chrome/`에 있으며 `npm run package:chrome`으로 공통 코드와 함께 패키징합니다. 테스트 전용 지연 코드는 배포하지 않습니다.
 - 동작 변경/버그 수정: 재현 가능한 단위 테스트 또는 Playwright 테스트를 추가·수정하고 관련 검사를 실행합니다.
 - 문서만 변경: 링크·설명과 `git diff --check`를 확인합니다. 불필요한 브라우저 테스트는 요구하지 않습니다.
