@@ -2,7 +2,9 @@
 
 ## 현재 사용자용 버전
 
-[extension/README.md](extension/README.md): 플레이어 아래에서 배속·CC·언어를 설정하고 자동 저장하는 0.2 버전. [구현 및 검증 기록](docs/INLINE_PRESETS.md)을 참고한다. 기존 experiments/ 폴더는 수동 제어 실험이며 사용자용 버전과 구분한다.
+0.4.0 배포 후보는 기존 배속·자막 설정에 영상 구간 GIF 생성·저장을 통합했습니다. [사용 안내](extension/README.md) · [배포 상태 및 지원 범위](release/RELEASE_0.4.0.md).
+
+GIF는 기기에서 생성하며 파일 저장은 보조 앱 없이 사용할 수 있습니다. 저장 폴더 기억과 원본 GIF 파일 클립보드는 선택 설치하는 [Mac 보조 앱](native/macos/gif-folder/INSTALL.md)이 필요합니다. Windows/Linux 보조 앱과 사진 보관함 연동은 포함하지 않습니다.
 
 Submeta 기존 강의 플레이어의 배속과 자막 설정을 영상마다 자동 적용하는 Firefox 데스크톱 확장 기능.
 
@@ -35,3 +37,7 @@ Copyright (c) 2026 aebongbong. [MIT 라이선스](LICENSE)를 사용합니다.
 코드 변경은 [기여 안내](CONTRIBUTING.md)에 따라 PR로 제안하고 관리자 검토 후 병합합니다. 공개 저장소: [yonghyeun/submeta-playback-presets](https://github.com/yonghyeun/submeta-playback-presets).
 
 게시자: **aebongbong** · 공개 지원 이메일: **aaabonggg@gmail.com**
+
+## Chrome 배포 준비
+
+Chrome용 별도 ZIP과 설치·스토어 제출 안내는 [Chrome 제출 자료](release/chrome/README.md)를 참고하세요.

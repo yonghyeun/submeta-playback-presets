@@ -102,3 +102,20 @@ test('video without CC menu reports unsupported while speed still applies',async
   await expect.poll(()=>h.rate().catch(()=>0)).toBe(1.5);
   await expect(h.page.locator('#captionStatus')).toContainText('자막 메뉴 없음 · 제어 미지원',{timeout:20000});
 });
+
+test('closed GIF editor does not block caption controls after dismissal',async({harness:h})=>{
+  await ready(h);
+  await expect(h.frame().locator('#submeta-gif-export-preview')).toBeAttached();
+  await expect(h.frame().locator('#submeta-gif-export-preview')).not.toHaveAttribute('role','dialog');
+  await h.worker.evaluate(async()=>{
+    const [tab]=await chrome.tabs.query({url:'https://submeta.io/*'});
+    await chrome.tabs.sendMessage(tab.id,{type:'gif:ui-open'});
+  });
+  await expect(h.frame().locator('#submeta-gif-export-preview')).toHaveAttribute('role','dialog');
+  await h.worker.evaluate(async()=>{
+    const [tab]=await chrome.tabs.query({url:'https://submeta.io/*'});
+    await chrome.tabs.sendMessage(tab.id,{type:'gif:ui-close'});
+  });
+  await expect(h.frame().locator('#submeta-gif-export-preview')).not.toHaveAttribute('role','dialog');
+  await h.page.locator('#captions').selectOption('on');await captions(h,'한국어','showing');
+});

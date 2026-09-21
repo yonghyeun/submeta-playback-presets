@@ -2,6 +2,10 @@
 
 한국어 항목별 절차·판정 기준·검증 한계: [Playwright 테스트 항목 및 검증 결과](../docs/PLAYWRIGHT_TEST_CASES.md).
 
+GIF 기능은 [실제 Submeta 무료 강의 E2E 계획](../docs/GIF_EXPORT_TEST_PLAN.md)과 [결과 기록 양식](../docs/GIF_EXPORT_TEST_RUN_TEMPLATE.md)을 따릅니다. 사용자 요청에 따라 새 합성 영상을 준비하지 않습니다. Mac/Firefox 개발본을 실제 UI로 조작해 생성·저장을 검증한 [실행 결과](../docs/GIF_EXPORT_GENERATION_RUN_2026-09-21.md)가 있으며, 전체 OS/사진 앱 검수는 남아 있습니다. 현재 `npm test`나 CI의 통과 결과에는 포함되지 않습니다.
+
+기능 개발본의 입력·인코더 순서·저장 요청 권한/무결성 검사는 `node tests/gif-export.test.mjs`로 실행합니다. 이 검사는 실제 영상 E2E를 대체하지 않습니다. 실제 저장 결과는 Pillow가 있는 Python에서 `python3 tests/live/verify-gif.py path/to/actual.gif --seconds 5 --sha256 PREVIEW_SHA256`로 독립 디코딩합니다. 길이·크기·프레임 변화·무한 반복·미리보기 해시 일치를 확인하며 새 테스트 영상을 만들지 않습니다. 파일/상세 측정값은 Git 제외 `local-only/`에 둡니다.
+
 ## Install and run
 
 Node.js 22 or later:
@@ -23,7 +27,7 @@ This entrypoint also runs the existing VM unit tests. Chromium may require permi
 
 ## What is tested
 
-Playwright loads an actual extension in headless Chromium. `harness.mjs` copies the production scripts into a temporary directory, converts only the Firefox background manifest to a Chromium service worker, and supplies a test-only `browser` API compatibility shim. The Firefox distribution files are not replaced by this adapter.
+Playwright loads an actual extension in headless Chromium. `harness.mjs` builds and extracts the Chrome submission ZIP into a temporary directory, using its production service worker and local `browser` API bridge. Only the delayed-storage regression adds test instrumentation. Firefox uses its original manifest.
 
 `site.mjs` responds locally at the two expected origins using Playwright routes. It supplies a real HTML media element playing generated silence, a real TextTrack, and a small CC menu matching the observed control contract. All other page requests are aborted. No account, paid course media, cookies or .env values are used.
 
@@ -57,3 +61,10 @@ Reference: https://playwright.dev/docs/chrome-extensions
 - The initial delayed-event regression failed on its third caption edit. Tracking locally issued revisions fixed stale events cancelling newer work.
 - Listing assets have a separate config/run (`npm run capture:listing`) so they do not replace the integration report.
 - Mozilla web-ext 10.6.0: zero errors, warnings or notices (see release/WEB_EXT_LINT.json).
+
+Chrome 브라우저 테스트는 `scripts/package_chrome.py`로 생성한 실제 제출 ZIP을 압축 해제하여 실행합니다. 지연 저장 이벤트 회귀 테스트만 테스트 계측 코드를 추가합니다.
+
+
+## GIF 통합 회귀 검사
+
+`node tests/gif-export.test.mjs`는 배포용 extension/gif 소스의 시간 범위·전송·원본 바이트·발신자 검증·Chrome 서비스 워커 저장 경로를 검사합니다. 기존 개발본을 비교하려면 `GIF_RELEASE_TEST=0 node tests/gif-export.test.mjs`를 사용합니다. 브라우저 검사에는 닫힌 GIF 편집창이 자막 제어를 막지 않는 회귀 검사가 포함됩니다. 생성 영상의 E2E는 합성 영상 대신 실제 접근 가능한 Submeta 강의에서 수행하며, 자동 프로토콜 검사와 구분해 기록합니다.

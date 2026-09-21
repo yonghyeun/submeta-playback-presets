@@ -27,6 +27,6 @@ assert.equal(sent.length,1);assert.equal(sent[0][0],7);assert.equal(sent[0][2].f
 await listener({app:'submeta-preset',type:'status',token:'test'},{tab:{id:7},frameId:3,url:'https://iframe.cloudflarestream.com/redacted'});
 assert.equal(sent.length,2);assert.equal(sent[1][2].frameId,0);assert.equal(sent[1][1].frameId,3);
 const manifest=JSON.parse(await readFile(new URL('manifest.json',base),'utf8'));
-assert.deepEqual(manifest.permissions,['storage']);
+assert.deepEqual(manifest.permissions,['storage','downloads','nativeMessaging']);
 for(const file of new Set([...manifest.background.scripts,...manifest.content_scripts.flatMap(s=>s.js)]))new vm.Script(await readFile(new URL(file,base),'utf8'),{filename:file});
 export const result='Passed: settings validation, unavailable-language policy, conflict budget, origin/frame routing, manifest and script syntax.';

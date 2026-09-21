@@ -34,9 +34,10 @@ jobs:
         timeout-minutes: 2
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
+      - run: npm run package:chrome
       - run: npm run package:release
       - name: Verify release manifest is current
-        run: git diff --exit-code -- release/PACKAGE_MANIFEST.json
+        run: git diff --exit-code -- release/PACKAGE_MANIFEST.json release/chrome/PACKAGE_MANIFEST.json
       - name: Upload test report
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4

@@ -3,7 +3,7 @@
 ## 기본 정보
 
 - 이름: **Playback Presets for Submeta**
-- 버전: **0.3.0**
+- 버전: **0.4.0**
 - 게시자 표시 이름: **aebongbong**
 - 공개 지원 이메일: **aaabonggg@gmail.com**
 - 라이선스: **MIT**. Copyright (c) 2026 aebongbong. [라이선스 전문](../LICENSE)
@@ -63,3 +63,12 @@ Preferences stay in browser-local extension storage. No personal information or 
 ## 제출 전 사용자 결정
 
 심사용 계정 제공 방법, 스토어 공개 방식. 로컬 패키지 준비만 완료하며 이 문서를 자동 게시하지 않는다.
+
+
+## 0.4.0 GIF 추가 소개 / GIF update
+
+플레이어 아래 GIF 만들기 버튼에서 썸네일 타임라인으로 1–15초 구간을 선택하고 움직이는 GIF로 저장하세요. 생성은 기기 안에서 처리합니다. Mac에서는 선택 설치하는 보조 앱으로 저장 폴더를 기억하고 원본 GIF 파일을 자동 복사할 수 있습니다. 보조 앱 없이도 일반 파일 저장은 가능합니다. Windows/Linux에서는 일반 파일 저장을 사용하세요. 사진 앱 저장은 지원하지 않습니다.
+
+Create a 1–15 second animated GIF using a thumbnail trim timeline below the player. Encoding runs locally. Save the GIF using the browser's file dialog. On macOS, an optional separately installed companion remembers a folder and automatically copies the original GIF file. Windows/Linux support ordinary file saving; they do not include native clipboard/folder integration. Photos integration is not included.
+
+Additional permissions: downloads saves only user-generated GIFs; nativeMessaging connects only to the optional local GIF companion for remembered-folder saving and original-file clipboard copy. No remote executable code or developer analytics.

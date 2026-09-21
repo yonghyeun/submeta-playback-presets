@@ -1,25 +1,24 @@
 import {test as base,expect,chromium} from 'playwright/test';
-import {mkdtemp,readFile,writeFile,mkdir,rm,cp} from 'node:fs/promises';
+import {mkdtemp,readFile,writeFile,mkdir,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
+import {execFileSync} from 'node:child_process';
 import path from 'node:path';
 import {routeSite,lessonURL} from './site.mjs';
-const source=new URL('../../extension/',import.meta.url);
-// Test-only adapter: retain Firefox distribution manifest and source unchanged.
-// Promise listener semantics are bridged explicitly for Chromium's callback API.
-const shim=`globalThis.browser={storage:{local:chrome.storage.local,onChanged:{addListener(fn){chrome.storage.onChanged.addListener((...args)=>setTimeout(()=>fn(...args),STORAGE_EVENT_DELAY));}}},runtime:{sendMessage:(m)=>chrome.runtime.sendMessage(m),onMessage:{addListener(fn){chrome.runtime.onMessage.addListener((m,s,reply)=>{const r=fn(m,s);if(r&&typeof r.then==='function'){r.then(reply,()=>reply({unavailable:true}));return true;}return r;});}}},tabs:chrome.tabs};`;
+const root=new URL('../../',import.meta.url);
+execFileSync('python3',['scripts/package_chrome.py'],{cwd:root});
+const version=JSON.parse(await readFile(new URL('extension/manifest.json',root),'utf8')).version;
 export const test=base.extend({
   storageEventDelay:[0,{option:true}],
   harness:async({storageEventDelay},use,testInfo)=>{
     const temp=await mkdtemp(path.join(tmpdir(),'submeta-e2e-')),ext=path.join(temp,'extension');await mkdir(ext);
-    const manifest=JSON.parse(await readFile(new URL('manifest.json',source),'utf8'));
-    delete manifest.browser_specific_settings;
-    manifest.background={service_worker:'test-background.js'};
-    for(const entry of manifest.content_scripts)entry.js=['test-shim.js',...entry.js];
-    await cp(new URL('icons/',source),path.join(ext,'icons'),{recursive:true});
-    await writeFile(path.join(ext,'manifest.json'),JSON.stringify(manifest));
-    await writeFile(path.join(ext,'test-shim.js'),shim.replace('STORAGE_EVENT_DELAY',String(storageEventDelay)));
-    await writeFile(path.join(ext,'test-background.js'),"importScripts('test-shim.js','background.js');");
-    for(const file of ['shared.js','background.js','panel.js','player.js'])await writeFile(path.join(ext,file),await readFile(new URL(file,source)));
+    // Extract exactly the submission ZIP. Only the delayed-event regression adds instrumentation.
+    execFileSync('python3',['-m','zipfile','-e',`dist/submeta-playback-preset-${version}-chrome.zip`,ext],{cwd:root});
+    if(storageEventDelay){
+      const manifest=JSON.parse(await readFile(path.join(ext,'manifest.json'),'utf8'));
+      for(const entry of manifest.content_scripts)entry.js.splice(1,0,'test-delay.js');
+      await writeFile(path.join(ext,'manifest.json'),JSON.stringify(manifest));
+      await writeFile(path.join(ext,'test-delay.js'),`browser.storage={local:chrome.storage.local,onChanged:{addListener(fn){chrome.storage.onChanged.addListener((...args)=>setTimeout(()=>fn(...args),${storageEventDelay}));}}};`);
+    }
     let context;
     const errors=[];
     const h={async open(){

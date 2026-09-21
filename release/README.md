@@ -1,3 +1,7 @@
+# 0.4.0 배포 진행 중
+
+최신 변경·지원 범위·패키지는 [0.4.0 배포 기록](RELEASE_0.4.0.md)을 참고하세요. 아래 0.3.0 기록은 이전 준비 이력입니다.
+
 # 0.3.0 배포 준비 자료 — 아직 미제출
 
 ## 준비된 파일
@@ -49,3 +53,7 @@ Mozilla 계정 생성/약관 동의, 파일 업로드, 서명 요청, 공개 등
 - 기능 검증용 접근 정보: https://extensionworkshop.com/documentation/publish/add-on-policies/
 
 현재 코드에는 `data_collection_permissions.required: ["none"]`를 추가했고 최소 Firefox 버전은 142다. 이는 호환성 선언이며 실제 검증 버전은 macOS Firefox 155.0.1이다. Android 지원은 검증하지 않았으므로 제출 플랫폼으로 선택하지 않는다.
+
+## Chrome 배포 준비
+
+Chrome용 별도 ZIP과 설치·스토어 제출 안내는 [Chrome 제출 자료](chrome/README.md)를 참고하세요.
