@@ -1,6 +1,6 @@
 # 공통 디자인 시스템과 검증 파이프라인
 
-작성: 2026-09-21. 상태: 저장소 조사에 근거한 설계 초안. 제품 UI와 CI에는 아직 적용하지 않았다.
+작성: 2026-09-21. 이 문서의 현재 상태 조사는 당시 기준이다. 2026-09-22에 P0~P4 구현을 진행했으며 최신 제품 적용·검증 상태는 진행표를 따른다.
 
 2026-09-22 후속: 실제 구현은 [진행 파이프라인](DESIGN_IMPLEMENTATION_PIPELINE.md)의 단계와 완료 조건을 따르며, 상태는 [진행표](DESIGN_PROGRESS.md)에 기록한다.
 
@@ -52,7 +52,7 @@
 | 제품 패턴 | PlaybackSettings, GifEditor, RangeTimeline | Submeta 전용 |
 | 검증 사례 | loading, empty, ready, disabled, error, success | 상태 정의와 검사 규칙 공통 |
 
-제안 파일 배치(아직 생성하지 않음):
+최초 제안 파일 배치(실제 P0~P4 구현에서는 테마를 `design/tokens.json`에, UI 검사를 `tests/ui/`에 모았다):
 
 ```text
 design/tokens.json               # 디자인 값의 단일 원본

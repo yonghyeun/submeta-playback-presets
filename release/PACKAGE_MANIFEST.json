@@ -2,7 +2,7 @@
   "version": "0.4.0",
   "signed": false,
   "archive": "submeta-playback-preset-0.4.0-unsigned.zip",
-  "sha256": "42ef7b93cb7b29829a5116fa14f7e5db5a5d3c2616e4b57a6540417da5048fdd",
+  "sha256": "8cc371673977039f1adeb8ef3c8520c7f9766ea36cf5fef862a9b707e77c0ff8",
   "files": {
     "LICENSE": {
       "bytes": 1067,
@@ -141,8 +141,8 @@
       "sha256": "96850722391d1f253927e8406c4cb45e7e3d5c6550eb4200f531bf775fcda5fb"
     },
     "ui/playback-settings.js": {
-      "bytes": 6423,
-      "sha256": "5339abf2b1582b074a5b27ef17e494b24365231620d122a440c453be7383e6f3"
+      "bytes": 6510,
+      "sha256": "caeb404e9cb5c9772797ae9c6743ca9ed1246d0d2cff1d66feba762dee8fd5af"
     },
     "ui/primitives.js": {
       "bytes": 2441,

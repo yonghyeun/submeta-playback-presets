@@ -71,12 +71,13 @@ test('tokens and renderer work in a separate-origin frame, light DOM and closed 
       const host=document.createElement('section');document.body.append(host);
       const root=mode==='light'?host:host.attachShadow({mode});
       const view=SubmetaUI.mountPlaybackSettings(root,{state:{prefs:{enabled:true,manageSpeed:true,rate:1.25,captions:'on',language:'ko'},connected:true,loading:false}});
-      read.push({mode,height:getComputedStyle(view.get('rate')).minHeight,background:getComputedStyle(view.get('rate')).backgroundColor});
+      view.setText('saved','저장 실패 · 다시 변경해 주세요');
+      read.push({mode,height:getComputedStyle(view.get('rate')).minHeight,background:getComputedStyle(view.get('rate')).backgroundColor,errorVisible:root.querySelector('details').open});
       view.destroy();
     }
     return read;
   });
-  for(const item of result){expect(item.height).toBe('36px');expect(item.background).toBe('rgb(43, 43, 48)');}
+  for(const item of result){expect(item.height).toBe('36px');expect(item.background).toBe('rgb(43, 43, 48)');expect(item.errorVisible).toBe(true);}
 });
 
 test('closed root is operable through real keyboard input',async({page})=>{

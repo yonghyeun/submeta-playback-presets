@@ -52,6 +52,8 @@ HTML 보고서는 `file://`로 열기보다 위 보고서 명령으로 연다. C
 
 Linux 시각 검사는 Playwright 1.62.1의 `mcr.microsoft.com/playwright:v1.62.1-noble` 컨테이너에서 실행한다. Node 24.19.0, 브라우저·폰트 의존성은 잠금 파일, locale `ko-KR`, timezone `Asia/Seoul`, 배율 1, dark/reduced-motion 설정을 사용한다. 로컬 Mac 이미지는 별도로 유지한다. 환경 버전 변경도 기준 이미지 재검토 사유다.
 
+CI 이미지 digest는 `sha256:dcc5531e97840b9b5e794f2814476b21571c5124a3fca2267d73041f56e7580e`로 고정했다. 기존 CI가 디자인 workflow를 호출하고, 필수 검사인 `Extension validation`은 디자인 결과가 성공해야 진행한다. 디자인 검사가 실패·생략되면 명시적으로 실패하므로 작업 의존성의 skip으로 통과 처리하지 않는다. 저장소 보호 규칙 자체는 변경하지 않는다.
+
 CI에서 기준 이미지가 없으면 검사 실패 결과의 actual을 받는다. **통과 처리하지 않고** 같은 환경에서 얻은 화면을 검토한 뒤 기준 이미지로 커밋하고 다시 CI를 실행한다. 자동 갱신이나 이미지 차이 무시는 없다.
 
 ## 검사 자체가 작동하는지 확인

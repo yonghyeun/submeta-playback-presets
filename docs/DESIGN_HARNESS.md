@@ -1,6 +1,6 @@
 # 디자인 작업 하네스
 
-상태: 2026-09-21 운영 규약 초안. 자동 실행 도구나 CI gate는 아직 구현되지 않았다. 현재 제품의 동작과 기존 사용자 변경을 보존하면서 [설계안](DESIGN_SYSTEM_PLAN.md)의 구현에 사용한다.
+상태: 2026-09-22 실행 가능한 하네스. 토큰 검사, Storybook, Playwright UI 검사와 통합 진입점을 구현했다. 현재 검증 상태는 진행표에 기록하며, 기존 사용자 변경을 보존하면서 [설계안](DESIGN_SYSTEM_PLAN.md)의 구현에 사용한다.
 
 작업 선택과 단계 전환은 [진행 파이프라인](DESIGN_IMPLEMENTATION_PIPELINE.md)을 따르고, 시작·검증·완료 기록은 [진행표](DESIGN_PROGRESS.md)에 남긴다.
 
@@ -52,13 +52,13 @@
 
 ## 자동화 구현 시 연결할 계약
 
-아래 명령 이름은 제안이며 현재 사용 가능한 스크립트가 아니다.
+아래 명령은 실제 `package.json`에 연결되어 있다. 설치·실행 환경과 결과물은 [실행 안내](DESIGN_RUNBOOK.md)를 따른다.
 
-| 제안 명령 | 책임 |
+| 명령 | 책임 |
 |---|---|
 | `design:check` | 토큰 참조·생성물 일치·적용 범위의 스타일 규칙 |
 | `storybook:build` | 제품 렌더러 기반 사례 정적 빌드 |
 | `test:ui` | 상태별 동작·접근성·시각 비교 |
 | `test:design` | 위 검사와 기존 단위/패키지 통합 검사를 연결하는 단일 진입점 |
 
-현재 실행 가능한 주요 진입점은 `npm run test:unit`, `npm run test:e2e`, `npm run lint:extension`이다. 기존 `scripts/test-local.sh`는 GIF 단위 검사가 빠져 있으므로 전체 검증과 동등하게 취급하지 않는다. 새 gate가 구현되면 이 문서에 실제 명령과 결과물 경로를 갱신한다.
+`npm run test:design`이 디자인 및 기존 제품 검사를 연결한다. 기존 `scripts/test-local.sh`에도 GIF 단위 검사를 추가했으며, 이 스크립트는 단위+E2E용이다. 디자인 전체 검사는 `./scripts/design-local.sh test:design`으로 실행한다. `npm run test:design:guards`는 다섯 가지 의도적 오류 감지를 별도로 검증한다.

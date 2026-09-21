@@ -46,6 +46,7 @@
       const element = get(id);
       if (element.textContent !== value) element.textContent = value;
       element.dataset.tone = tone ?? (/실패|끊김/.test(value) ? 'error' : /저장됨/.test(value) ? 'success' : 'neutral');
+      if (element.dataset.tone === 'error') root.querySelector('details').open = true;
     };
     function update(next) {
       if (next.prefs) {

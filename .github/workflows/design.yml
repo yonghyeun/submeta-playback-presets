@@ -1,10 +1,7 @@
 name: Design system
 
 on:
-  push:
-    branches: [main, codex/design-system-p4]
-  pull_request:
-    branches: [main]
+  workflow_call:
   workflow_dispatch:
 
 permissions:
@@ -19,7 +16,7 @@ jobs:
     name: Design validation
     runs-on: ubuntu-24.04
     container:
-      image: mcr.microsoft.com/playwright:v1.62.1-noble
+      image: mcr.microsoft.com/playwright:v1.62.1-noble@sha256:dcc5531e97840b9b5e794f2814476b21571c5124a3fca2267d73041f56e7580e
       options: --ipc=host
     timeout-minutes: 15
     env:
