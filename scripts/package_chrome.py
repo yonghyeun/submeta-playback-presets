@@ -9,6 +9,7 @@ root = Path(__file__).resolve().parent.parent
 source = root / 'extension'
 manifest = json.loads((source / 'manifest.json').read_text())
 manifest.pop('browser_specific_settings')
+manifest['key'] = (root / 'chrome/public-key.txt').read_text().strip()
 manifest['minimum_chrome_version'] = '102'
 manifest['background'] = {'service_worker': 'service-worker.js'}
 for entry in manifest['content_scripts']:
