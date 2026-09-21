@@ -14,6 +14,7 @@ parser.add_argument('--install', action='store_true')
 args = parser.parse_args()
 root = Path(__file__).resolve().parent.parent
 source = root / 'native/macos/gif-folder'
+(root / 'dist').mkdir(parents=True, exist_ok=True)
 # File-provider folders can attach FinderInfo to .app directories, which makes
 # code signing fail. Sign in a local staging directory, then archive/install it.
 staging = tempfile.TemporaryDirectory(prefix='submeta-folder-build-', dir='/private/tmp')
