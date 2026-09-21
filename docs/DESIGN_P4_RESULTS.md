@@ -32,7 +32,7 @@
 
 등록 후 [일반 CI 비교](https://github.com/yonghyeun/submeta-playback-presets/actions/runs/35618556997)는 성공했다. 토큰 검사, Storybook 빌드, UI 29개, 오류 감지 5종 및 결과 artifact 업로드가 성공했다. 이 실행은 `7b2714c` 기준이며 기준 이미지 자동 갱신을 사용하지 않았다.
 
-그 후 오류 상태 자동 펼침과 기존 필수 검사로의 gate 연결을 보완했다. 해당 최종 코드의 통합 CI 링크와 결과는 검증 완료 후 아래에 기록한다.
+그 후 오류 상태 자동 펼침, 실제 제품과 같은 데모 복구 동작, 기존 필수 검사로의 gate 연결을 보완하고 main의 0.4.1을 통합했다. 최종 코드 `eacdce3`의 [통합 CI](https://github.com/yonghyeun/submeta-playback-presets/actions/runs/35619660448)가 성공했다. `Design system / Design validation`과 `Extension validation` 모두 성공했으며 UI 29/29, 오류 감지 5종, 기존 제품 E2E 12/12, 패키지 재생성 후 manifest 일치까지 확인했다. 이후 완료 기록 정리는 문서 변경이다.
 
 ## 실패 감지 실험의 의미
 
