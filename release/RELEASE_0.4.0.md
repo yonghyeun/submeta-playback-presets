@@ -29,8 +29,11 @@ Publication is not complete until each store dashboard confirms submission/publi
 - Production GIF protocol/authorization/range/transfer tests passed, including Chrome service-worker download without createObjectURL.
 - Chromium package regression suite: 12/12 passed, including captions after closing GIF editor. Initial integration exposed a hidden-dialog/caption conflict; the passing run includes its fix.
 - Firefox web-ext lint: zero errors, warnings and notices.
-- Earlier actual Submeta GIF generation and native clipboard testing used preview 0.2.8 plus the same encoder/capture/native byte path. The store-ID integration still needs live-browser confirmation; do not confuse automated fixture tests with a real course GIF run.
-- Store access currently requires Mozilla login and Google reauthentication. Neither 0.4.0 store submission has been completed at this point.
+- Actual Firefox production-ID integration passed on the real free-course lesson using the signed-in paid account, as detailed below. Chrome actual-course generation remains unverified; its package passed automated Chromium regression tests.
+- Firefox 0.4.0: submitted successfully; AMO displayed “Version Submitted” and will email when published. Version ID: 6501425. Validation: zero errors/warnings.
+- Chrome 0.4.0: submitted successfully; CWS displayed “Your extension was submitted for review”. Automatic publication after approval is enabled. Item ID: phmolfcajpjaalohghgmgpehedpeagan.
+- Submission is complete for both stores; public availability of 0.4.0 is pending store approval/publication, not yet confirmed.
+- Release PR #3 merged as 1bee51fa7216393588ddc7975611ea5cb7ad7dab after CI run 35579194302 passed.
 
 Live Firefox integration: temporarily loaded extension/manifest.json under the production ID, generated 0:30–0:35 from the real Hip Escape from Mount lesson, and confirmed 2,311 KiB result plus successful original-GIF clipboard through the 0.4.0 native allowlist. The clipboard instruction initially fell back because platform info is not available in that content-script context; moved OS lookup into the authenticated background and added Mac/Windows/failure tests.
 
