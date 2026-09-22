@@ -42,7 +42,17 @@ export async function routeSite(context){
   await context.route('**/*',async route=>{
     const u=new URL(route.request().url());
     if(u.hostname==='submeta.io')return route.fulfill({contentType:'text/html; charset=utf-8',body:lesson});
-    if(u.hostname==='iframe.cloudflarestream.com')return route.fulfill(u.pathname==='/sample.wav'?{contentType:'audio/wav',body:sample}:{contentType:'text/html; charset=utf-8',body:player});
+    if(u.hostname==='iframe.cloudflarestream.com'){
+      if(u.pathname!=='/sample.wav')return route.fulfill({contentType:'text/html; charset=utf-8',body:player});
+      // Advertise and serve byte ranges so Chromium can seek the local media.
+      const range=/^bytes=(\d+)-(\d*)$/.exec(route.request().headers().range||'');
+      const start=range?Number(range[1]):0,end=range&&range[2]?Math.min(Number(range[2]),sample.length-1):sample.length-1;
+      const body=sample.subarray(start,end+1);
+      return route.fulfill({status:range?206:200,contentType:'audio/wav',body,headers:{
+        'Accept-Ranges':'bytes','Content-Length':String(body.length),
+        ...(range?{'Content-Range':`bytes ${start}-${end}/${sample.length}`}:{})
+      }});
+    }
     return route.abort();
   });
 }

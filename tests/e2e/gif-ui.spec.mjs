@@ -16,6 +16,7 @@ test('GIF product portal inputs edit without player shortcuts and Escape restore
   await expect(h.page.locator('#submeta-gif-launcher')).not.toHaveAttribute('inert','');
   // Reopening the focused launcher uses the latest playback position.
   await frame.locator('video').evaluate(video=>{video.pause();video.currentTime=20;});
+  await expect.poll(()=>frame.locator('video').evaluate(video=>!video.seeking&&video.currentTime)).toBe(20);
   await h.page.keyboard.press('Enter');await expect(frame.locator('#submeta-gif-export-preview')).toHaveAttribute('role','dialog');
   await expect(start).toHaveValue('0:20');await expect(end).toHaveValue('0:25');
   await start.focus();await h.page.keyboard.press('Escape');
