@@ -1,7 +1,7 @@
 {
   "version": "0.4.1",
   "archive": "submeta-playback-preset-0.4.1-chrome.zip",
-  "sha256": "6a6a2462736fa4468ce7895c6e43a7a24ab59d04b06564036b40eb58f3581663",
+  "sha256": "5b89171b2780b82213cf38d848a10817c354b08e95e587ae683dadc9fcf1fc5e",
   "files": {
     "LICENSE": {
       "bytes": 1067,
@@ -56,8 +56,8 @@
       "sha256": "5eacce41efdc7e3b78aa1828add3039e83a89cd1b3874d19b3331d7ccf6051e8"
     },
     "gif/panel.js": {
-      "bytes": 15250,
-      "sha256": "d8d2cea17131380e800f7fd46c57c12050fd73ef913d60a7637ab0e806137b7e"
+      "bytes": 15264,
+      "sha256": "7050bab4c7d0e03d831eee62759c5ef2286d7d9f3d1e6294139f44b1e554782e"
     },
     "gif/save.js": {
       "bytes": 1945,
