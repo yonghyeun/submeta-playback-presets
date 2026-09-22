@@ -1,5 +1,6 @@
 import {test,expect} from 'playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import {existsSync} from 'node:fs';
 const busy=new Set(['loading','generating','saving']);
 async function open(page,state='ready') {
   await page.goto(`/iframe.html?id=gif--${state}&viewMode=story`);
@@ -8,10 +9,17 @@ async function open(page,state='ready') {
   await page.evaluate(async()=>{await document.fonts.load('400 14px "Noto Sans KR"','구간 선택');await document.fonts.load('600 14px "Noto Sans KR"','구간 선택');await document.fonts.ready;});
   if(!busy.has(state))await expect(page.getByRole('img',{name:'탐색 위치 썸네일'})).toBeVisible();
 }
-for(const width of [390,1100])for(const state of ['ready','generating','complete','save-error'])test(`GIF visual ${state} at ${width}`,async({page})=>{
+for(const width of [390,1100])for(const state of ['ready','generating','complete','save-error'])test(`GIF visual ${state} at ${width}`,async({page},info)=>{
   await page.setViewportSize({width,height:950});await open(page,state);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
-  await expect(page.locator('.gif-demo-page')).toHaveScreenshot(`gif-${state}-${width}.png`);
+  const name=`gif-${state}-${width}.png`;
+  if(!existsSync(info.snapshotPath(name))){
+    // Keep missing references failing, but preserve the full element for human review.
+    const candidate=info.outputPath(name.replace('.png','-candidate.png'));
+    await page.locator('.gif-demo-page').screenshot({path:candidate,animations:'disabled',caret:'hide',scale:'css'});
+    await info.attach('new-reference-candidate',{path:candidate,contentType:'image/png'});
+  }
+  await expect(page.locator('.gif-demo-page')).toHaveScreenshot(name);
 });
 for(const state of ['ready','loading','invalid','generating','cancelled','error','complete','saving','saved','save-error','copy-error','native-unavailable','folder-unselected','light'])test(`GIF accessible ${state}`,async({page})=>{
   await open(page,state);
