@@ -4,6 +4,7 @@
   const api = globalThis.browser || globalThis.chrome;
   const host = document.createElement('div'); host.id = 'submeta-gif-launcher';
   const root = host.attachShadow({mode: 'closed'});
+  const syncLayout = SubmetaPreset.widgetLayout(host);
   const view = SubmetaUI.mountGifLauncher(root, {onOpen: () => void open()});
   const backdrop = document.createElement('div'); backdrop.style.cssText = SubmetaUI.gifBackdropCSS;
   let inerted = [];
@@ -59,13 +60,15 @@
     const candidates = [...document.querySelectorAll('iframe')].filter(el => { try { return new URL(el.src).origin === 'https://iframe.cloudflarestream.com'; } catch { return false; } });
     const next = /^\/[^/]+\/courses\/[^/]+\/[^/]+/.test(location.pathname) && candidates.length === 1 ? candidates[0] : null;
     if (next !== frame || next?.src !== frameURL) { if (opened) void close(); frame = next; frameURL = next?.src || ''; }
-    if (!frame) { host.remove(); return; }
+    if (!frame) { host.remove(); syncLayout(); return; }
     const container = frame.closest('[class*="VideoContent"][class*="__stage"]') || frame.closest('[class*="VideoContent"][class*="__player"]') || frame.closest('[class*="MasterPlayer"]') || frame.parentElement;
     const presets = document.getElementById('submeta-presets');
     const anchor = presets?.previousElementSibling === container ? presets : container;
     if (host.previousElementSibling !== anchor) anchor.after(host);
+    syncLayout();
   }
   const observer = new MutationObserver(() => { clearTimeout(scanTimer); scanTimer = setTimeout(scan, 100); });
   observer.observe(document.documentElement, {childList:true, subtree:true, attributes:true, attributeFilter:['src']}); scan();
+  window.addEventListener('resize', scan);
   window.addEventListener('pagehide', () => { observer.disconnect(); clearTimeout(scanTimer); if (opened) restore(); view.destroy(); }, {once:true});
 })();

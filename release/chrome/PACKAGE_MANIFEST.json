@@ -1,7 +1,7 @@
 {
   "version": "0.4.1",
   "archive": "submeta-playback-preset-0.4.1-chrome.zip",
-  "sha256": "3316d89de773b522b9ff1e08e49a50e9d571b7fdf2802ed97a2664f2a46f25b7",
+  "sha256": "7ae2d2a1eb7d049ab875cd72b593bc75e2c597849cef5332e6cc79089303ac3c",
   "files": {
     "LICENSE": {
       "bytes": 1067,
@@ -48,8 +48,8 @@
       "sha256": "7baac3e714b4f96c547772231daed739ede220bc3396b93144479096d9412599"
     },
     "gif/launcher.js": {
-      "bytes": 5141,
-      "sha256": "3233b8c37a1c480340310ccb42ef11bf5a3b7b81d789e3bfdf6754f292a0fb8e"
+      "bytes": 5271,
+      "sha256": "9f4ec13121bba60f4cf833b72901b4b5d452e853e4f9ccf4eb3aaa5b695dd761"
     },
     "gif/native-folder.js": {
       "bytes": 1720,
@@ -124,8 +124,8 @@
       "sha256": "35e0df3a360b106df2120c126243897af621a74e326a27536b32745977bd44d7"
     },
     "panel.js": {
-      "bytes": 6078,
-      "sha256": "33818ae97733291ea0cad90962d5774a6eddf38a4f3e7e27b092c774bba7850b"
+      "bytes": 5889,
+      "sha256": "51a19fd727386f2c0a98418e7b0330b84c96c437a98956fa22165b42ef41739b"
     },
     "player.js": {
       "bytes": 11792,
@@ -136,20 +136,20 @@
       "sha256": "89ff9a5c21badb323064f75f5bf4c2d71a31e5e339f29f64aea65dffc28c9d02"
     },
     "shared.js": {
-      "bytes": 1380,
-      "sha256": "96850722391d1f253927e8406c4cb45e7e3d5c6550eb4200f531bf775fcda5fb"
+      "bytes": 2965,
+      "sha256": "2754f79e13c7be957f4ada59d2d24346de2f541f3a0e2b92b4ac7c879163d736"
     },
     "ui/THIRD_PARTY_LICENSES.txt": {
       "bytes": 3294,
       "sha256": "759f02b5afb6ca84446d9c811992e8a7709c4a9a145aad5544e84959a2aacfa0"
     },
     "ui/gif-editor.js": {
-      "bytes": 20304,
-      "sha256": "262e07e803bc6102f798c2c71c416772035dc1170bb15475a6ce9454a32c8233"
+      "bytes": 20341,
+      "sha256": "e04ebe79e9e2da59558b667f6feca1ab2130250bc293eef18f7d6a756564d551"
     },
     "ui/playback-settings.js": {
-      "bytes": 12583,
-      "sha256": "80de83cefdc242980da3422ffe76c17f9b9920d69d0b480ab596777ca0d0ef68"
+      "bytes": 12591,
+      "sha256": "b6665d904e7b5aa4f87ac92dd19af28a708603f6860076e1896f9e93b882eb6e"
     },
     "ui/primitives.js": {
       "bytes": 2533,

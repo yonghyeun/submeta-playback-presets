@@ -4,6 +4,7 @@
   document.getElementById('submeta-presets')?.remove();
   const host = document.createElement('section'); host.id = 'submeta-presets';
   const root = host.attachShadow({mode:'open'});
+  const syncLayout = P.widgetLayout(host);
   const view = SubmetaUI.mountPlaybackSettings(root, {actions: {
     change: (id, values) => changePreference(id, values),
     suspend: () => {suspended=!suspended;render();configure(true);},
@@ -39,13 +40,11 @@
     const course=/^\/[^/]+\/courses\/[^/]+\/[^/]+/.test(location.pathname);
     const matches=[...document.querySelectorAll('iframe')].filter(f=>{try{return new URL(f.src).origin==='https://iframe.cloudflarestream.com';}catch{return false;}});
     const f=course && matches.length===1 ? matches[0] : null;
-    if (!f) {host.remove();frame=null;frameId=undefined;token='';clearTimeout(bindTimer);return;}
+    if (!f) {host.remove();syncLayout();frame=null;frameId=undefined;token='';clearTimeout(bindTimer);return;}
     // The observed player wrapper includes next/previous controls. Place outside it.
     const container=f.closest('[class*="VideoContent"][class*="__stage"]') || f.closest('[class*="VideoContent"][class*="__player"]') || f.closest('[class*="MasterPlayer"]') || f.parentElement;
     if (host.previousElementSibling!==container) container.after(host);
-    // Match the site's lesson text gutter, including its responsive layout.
-    const details=document.querySelector('[class*="VideoDetails"][class*="__details"]');
-    if(details) host.style.setProperty('--preset-gutter',getComputedStyle(details).paddingLeft);
+    syncLayout();
     if (frame!==f || frameSrc!==f.src || path!==location.pathname) {
       frame=f;frameSrc=f.src;path=location.pathname;token=crypto.randomUUID();frameId=undefined;suspended=false;labels=[];bindAttempts=0;
       text('speedStatus','배속: 플레이어 확인 중');text('captionStatus','자막: 플레이어 확인 중');render();bind();

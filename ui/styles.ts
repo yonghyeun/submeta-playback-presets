@@ -4,7 +4,7 @@ import '../extension/ui/primitives.js';
 export const playbackCSS = `${globalThis.SubmetaUI.tokenCSS}${globalThis.SubmetaUI.controlCSS}
       :host{display:block;clear:both;width:100%;margin:0;font:inherit;color-scheme:dark}
       :host([data-theme="light"]){color-scheme:light}
-      .panel{padding:var(--sm-space-4) var(--preset-gutter,var(--sm-space-4));background:var(--sm-surface-canvas);color:var(--sm-text-primary);border-bottom:var(--sm-size-border) solid var(--sm-border-default);font-family:var(--sm-font-family);font-size:var(--sm-font-body);line-height:var(--sm-line-body)}
+      .panel{padding:var(--sm-space-4) var(--submeta-widget-gutter,var(--sm-space-4));background:var(--sm-surface-canvas);color:var(--sm-text-primary);border-bottom:var(--sm-size-border) solid var(--sm-border-default);font-family:var(--sm-font-family);font-size:var(--sm-font-body);line-height:var(--sm-line-body)}
       .heading{display:flex;align-items:center;justify-content:space-between;gap:var(--sm-space-3);margin-bottom:var(--sm-space-3)}
       .heading h2{font:inherit;font-weight:var(--sm-weight-medium);margin:0}
       .eyebrow{font-size:var(--sm-font-caption);color:var(--sm-text-muted)}
