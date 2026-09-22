@@ -71,7 +71,10 @@
     if(inputVideo!==video){inputVideo=video;initializedTimes=false;}
     let limit;try{limit=Gif.timestampLimit(video?.duration);}catch{limit=null;}
     if(job)return;
-    if(limit!==null&&!initializedTimes){state.start=limit>=35?'0:30':'0:00';state.end=Gif.formatTimestamp(limit>=35?35:Math.min(5,limit));initializedTimes=true;}
+    if(limit!==null&&!initializedTimes){
+      const start=Math.max(0,Math.min(limit,Number.isFinite(video.currentTime)?Math.round(video.currentTime*10)/10:0));
+      state.start=Gif.formatTimestamp(start);state.end=Gif.formatTimestamp(Math.min(start+5,limit));initializedTimes=true;
+    }
     else if(limit!==null&&limit!==inputLimit){normalizeTime('start');normalizeTime('end');}
     inputLimit=limit;
     update({duration:limit||0,mediaKey:video?.currentSrc||'',bounds:limit===null?'영상 길이를 확인하는 중…':`입력 범위 0:00–${Gif.formatTimestamp(limit)} · 분:초 (예: 4:35)`});
@@ -177,7 +180,7 @@
   },true);
   api.runtime.onMessage.addListener(message=>{
     if(message?.type==='gif:ui-probe')return api.runtime.sendMessage({type:'gif:ui-ready'});
-    if(message?.type==='gif:ui-open'){host.setAttribute('role','dialog');host.style.display='block';refreshTimeBounds();return Promise.resolve({ready:true});}
+    if(message?.type==='gif:ui-open'){host.setAttribute('role','dialog');host.style.display='block';if(!job&&!saving&&!copying)initializedTimes=false;refreshTimeBounds();return Promise.resolve({ready:true});}
     if(message?.type==='gif:ui-focus'){view.focusClose();return Promise.resolve({ready:true});}
     if(message?.type==='gif:ui-close'){hideEditor();return Promise.resolve({closed:true});}
   });
