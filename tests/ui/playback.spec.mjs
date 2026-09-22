@@ -3,6 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 import {readFileSync} from 'node:fs';
 const tokenScript = readFileSync(new URL('../../extension/ui/tokens.js',import.meta.url),'utf8');
 const controlsScript = readFileSync(new URL('../../extension/ui/primitives.js',import.meta.url),'utf8');
+const runtimeScript = readFileSync(new URL('../../extension/ui/react-runtime.js',import.meta.url),'utf8');
 const rendererScript = readFileSync(new URL('../../extension/ui/playback-settings.js',import.meta.url),'utf8');
 
 async function open(page, state = 'ready') {
@@ -53,7 +54,9 @@ test('error recovery and loading controls expose honest state',async({page})=>{
   for(const name of ['배속','CC','언어'])await expect(page.getByRole('combobox',{name,exact:true})).toBeDisabled();
   await expect(page.getByRole('region')).toHaveAttribute('aria-busy','true');
   await open(page,'error');await expect(page.getByRole('status')).toContainText('저장 실패');
-  await page.getByRole('button',{name:'다시 적용'}).click();await expect(page.getByRole('status')).toContainText('저장됨');
+  await page.getByRole('button',{name:'다시 적용'}).click();await expect(page.getByRole('status')).toContainText('저장 실패');
+  await page.getByRole('combobox',{name:'배속',exact:true}).selectOption('1.5');await expect(page.getByRole('status')).toContainText('저장됨');
+  await open(page,'disconnected');await page.getByRole('button',{name:'다시 적용'}).click();await expect(page.getByRole('status')).toContainText('자막: 한국어 적용됨');
   await open(page,'unavailable');await expect(page.getByRole('combobox',{name:'언어',exact:true})).toHaveValue('ko');
   await expect(page.getByRole('status')).toContainText('선택 언어 미제공');
 });
@@ -64,19 +67,20 @@ test('tokens and renderer work in a separate-origin frame, light DOM and closed 
   await page.evaluate(()=>{const frame=document.createElement('iframe');frame.src='https://design-frame.invalid/';frame.title='다른 출처 렌더러';document.body.append(frame);});
   await expect.poll(()=>page.frames().some(item=>item.url().startsWith('https://design-frame.invalid'))).toBe(true);
   const isolated=page.frames().find(item=>item.url().startsWith('https://design-frame.invalid'));
-  for(const content of [tokenScript,controlsScript,rendererScript])await isolated.addScriptTag({content});
+  for(const content of [tokenScript,controlsScript,runtimeScript,rendererScript])await isolated.addScriptTag({content});
   const result=await isolated.evaluate(()=>{
     const read=[];
     for(const mode of ['light','open','closed']){
       const host=document.createElement('section');document.body.append(host);
       const root=mode==='light'?host:host.attachShadow({mode});
       const view=SubmetaUI.mountPlaybackSettings(root,{state:{prefs:{enabled:true,manageSpeed:true,rate:1.25,captions:'on',language:'ko'},connected:true,loading:false}});
-      read.push({mode,height:getComputedStyle(view.get('rate')).minHeight,background:getComputedStyle(view.get('rate')).backgroundColor});
+      view.setText('saved','저장 실패 · 다시 변경해 주세요');
+      read.push({mode,height:getComputedStyle(view.get('rate')).minHeight,background:getComputedStyle(view.get('rate')).backgroundColor,errorVisible:root.querySelector('details').open});
       view.destroy();
     }
     return read;
   });
-  for(const item of result){expect(item.height).toBe('36px');expect(item.background).toBe('rgb(43, 43, 48)');}
+  for(const item of result){expect(item.height).toBe('36px');expect(item.background).toBe('rgb(43, 43, 48)');expect(item.errorVisible).toBe(true);}
 });
 
 test('closed root is operable through real keyboard input',async({page})=>{

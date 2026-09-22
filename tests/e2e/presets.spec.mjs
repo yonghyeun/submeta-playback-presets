@@ -11,10 +11,27 @@ test('panel layout, neutral checkbox and collapsed details',async({harness:h},in
   await expect(h.page.locator('details')).not.toHaveAttribute('open','');
   const stage=await h.page.locator('.VideoContent__stage').boundingBox(),panel=await h.page.locator('#submeta-presets').boundingBox();
   expect(panel.y).toBeGreaterThanOrEqual(stage.y+stage.height);expect(panel.height).toBeLessThan(140);
+  const aligned = async () => {
+    const bounds = await h.page.locator('.VideoDetails__details').evaluate(el => {
+      const rect = el.getBoundingClientRect(), css = getComputedStyle(el);
+      return {left:rect.left+parseFloat(css.paddingLeft),right:rect.right-parseFloat(css.paddingRight)};
+    });
+    for (const id of ['submeta-presets','submeta-gif-launcher']) {
+      await expect.poll(async()=>{
+        const box=await h.page.locator('#'+id).boundingBox();
+        return Math.max(Math.abs(box.x-bounds.left),Math.abs(box.x+box.width-bounds.right));
+      }).toBeLessThan(1);
+    }
+  };
+  await aligned();
   await h.page.screenshot({path:info.outputPath('desktop.png')});
   await h.page.setViewportSize({width:390,height:844});
+  await aligned();
   expect(await h.page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
   await h.page.screenshot({path:info.outputPath('mobile.png')});
+  // Native content can resize independently of a window resize.
+  await h.page.locator('.VideoDetails__details').evaluate(el=>{el.style.maxWidth='340px';});
+  await aligned();
 });
 
 test('live speed edit with retention OFF, no reload and no later enforcement',async({harness:h})=>{

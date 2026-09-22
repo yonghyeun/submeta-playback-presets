@@ -27,38 +27,38 @@
     url.searchParams.set('width', '240'); url.searchParams.set('height', '136'); url.searchParams.set('fit', 'clip');
     return url.href;
   };
-  Gif.timeline = ({container, video, change}) => {
-    const section = document.createElement('div');
-    section.style.cssText = 'padding:12px 0;border-bottom:1px solid #ccd8d0;margin-bottom:8px';
+  Gif.timeline = ({container, video, change, thumbnailURL}) => {
+    const section = document.createElement('div'); section.className = 'sm-timeline';
+    section.style.cssText = 'padding:0 0 var(--sm-space-4);border-bottom:var(--sm-size-border) solid var(--sm-border-default);margin-bottom:var(--sm-space-3)';
     const heading = document.createElement('strong'); heading.textContent = '슬라이더로 GIF 구간 선택';
-    const summary = document.createElement('p'); summary.style.margin = '6px 0';
+    const summary = document.createElement('p'); summary.style.cssText = 'margin:var(--sm-space-2) 0;color:var(--sm-text-muted);font-size:var(--sm-font-caption)';
     const image = document.createElement('img'); image.alt = '탐색 위치 썸네일'; image.hidden = true;
-    image.style.cssText = 'display:block;width:240px;max-width:100%;height:135px;object-fit:contain;background:#eef2ef;margin:6px auto';
-    const caption = document.createElement('p'); caption.style.cssText = 'text-align:center;margin:4px 0;min-height:20px';
+    image.style.cssText = 'display:block;width:var(--sm-size-label-max);max-width:100%;height:var(--sm-size-thumbnail-height);object-fit:contain;background:var(--sm-surface-canvas);margin:var(--sm-space-2) auto;border-radius:var(--sm-radius-md)';
+    const caption = document.createElement('p'); caption.style.cssText = 'text-align:center;margin:var(--sm-space-1) 0;min-height:var(--sm-space-5);color:var(--sm-text-muted);font-size:var(--sm-font-caption)';
     caption.textContent = '슬라이더를 움직이면 해당 장면을 보여줍니다.';
     const strip = document.createElement('div');
-    strip.style.cssText = 'position:relative;height:62px;margin:14px 12px 8px;touch-action:none;user-select:none;border-radius:6px;background:#26332e';
-    const frames = document.createElement('div'); frames.style.cssText = 'position:absolute;inset:0;display:flex;overflow:hidden;border-radius:6px;pointer-events:none';
+    strip.style.cssText = 'position:relative;height:var(--sm-size-timeline-height);margin:var(--sm-space-4) var(--sm-space-3) var(--sm-space-2);touch-action:none;user-select:none;border-radius:var(--sm-radius-md);background:var(--sm-surface-field)';
+    const frames = document.createElement('div'); frames.style.cssText = 'position:absolute;inset:0;display:flex;overflow:hidden;border-radius:var(--sm-radius-md);pointer-events:none';
     const shadeLeft = document.createElement('div'), shadeRight = document.createElement('div');
-    for (const shade of [shadeLeft, shadeRight]) shade.style.cssText = 'position:absolute;top:0;bottom:0;background:#0009;pointer-events:none';
+    for (const shade of [shadeLeft, shadeRight]) shade.style.cssText = 'position:absolute;top:0;bottom:0;background:var(--sm-surface-scrim);opacity:var(--sm-opacity-scrim);pointer-events:none';
     shadeLeft.style.left = '0'; shadeRight.style.right = '0';
     const selected = document.createElement('div');
     selected.tabIndex = 0; selected.setAttribute('role', 'slider'); selected.setAttribute('aria-label', '선택 구간 이동');
-    selected.style.cssText = 'position:absolute;top:0;bottom:0;border-top:4px solid #f5c842;border-bottom:4px solid #f5c842;box-sizing:border-box;cursor:grab;touch-action:none;min-width:2px';
+    selected.style.cssText = 'position:absolute;top:0;bottom:0;border-top:var(--sm-space-1) solid var(--sm-selection-range);border-bottom:var(--sm-space-1) solid var(--sm-selection-range);box-sizing:border-box;cursor:grab;touch-action:none;min-width:var(--sm-size-focus)';
     const grips = ['start', 'end'].map((side, index) => {
       const grip = document.createElement('button'); grip.type = 'button'; grip.setAttribute('role', 'slider');
       grip.setAttribute('aria-label', index ? '종료 손잡이' : '시작 손잡이'); grip.textContent = '┃';
-      grip.style.cssText = 'position:absolute;top:-4px;bottom:-4px;width:18px;padding:0;margin:0;border:0;background:#f5c842;color:#30280c;border-radius:4px;cursor:ew-resize;touch-action:none;font:700 16px system-ui;z-index:2';
+      grip.style.cssText = 'position:absolute;top:calc(-1 * var(--sm-space-1));bottom:calc(-1 * var(--sm-space-1));width:var(--sm-size-timeline-grip);padding:0;margin:0;border:0;background:var(--sm-selection-range);color:var(--sm-selection-on-range);border-radius:var(--sm-radius-sm);cursor:ew-resize;touch-action:none;font:var(--sm-weight-medium) var(--sm-font-title) system-ui;z-index:2';
       return grip;
     });
     strip.append(frames, shadeLeft, shadeRight, selected, ...grips);
-    const scale = document.createElement('div'); scale.style.cssText = 'display:flex;justify-content:space-between;font-size:11px;color:#58665d';
+    const scale = document.createElement('div'); scale.style.cssText = 'display:flex;justify-content:space-between;font-size:var(--sm-font-caption);color:var(--sm-text-muted)';
     const first = document.createElement('span'), last = document.createElement('span'); scale.append(first, last);
-    const tools = document.createElement('div'); tools.style.cssText = 'display:flex;justify-content:space-between;gap:4px;margin:8px 0';
+    const tools = document.createElement('div'); tools.style.cssText = 'display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--sm-space-1);margin:var(--sm-space-3) 0';
     const back = document.createElement('button'), zoom = document.createElement('button'), next = document.createElement('button');
     back.textContent = '← 앞 구간'; next.textContent = '뒤 구간 →'; zoom.textContent = '전체 영상';
-    for (const el of [back, zoom, next]) { el.type = 'button'; el.style.cssText = 'font:12px system-ui;padding:5px 7px;margin:0'; tools.append(el); }
-    const imageBox = document.createElement('div'); imageBox.style.height = '147px'; imageBox.append(image);
+    for (const el of [back, zoom, next]) { el.type = 'button'; el.className = 'sm-button'; el.style.cssText = 'font-size:var(--sm-font-caption);margin:0'; tools.append(el); }
+    const imageBox = document.createElement('div'); imageBox.style.cssText = 'min-height:var(--sm-size-thumbnail-height);border-radius:var(--sm-radius-md);background:var(--sm-surface-canvas)'; imageBox.append(image);
     heading.textContent = 'GIF 구간 자르기'; caption.textContent = '양 끝은 길이 조절 · 가운데는 구간 이동';
     section.append(heading, summary, imageBox, caption, strip, scale, tools);
     let selection = [0, 1], limit = 1, timer, deadline, serial = 0, pending, lastSource, lastRequestAt = 0;
@@ -82,7 +82,7 @@
           };
           candidate.onerror = () => { clearTimeout(deadline); if (token === serial) { caption.textContent = `${Gif.formatTimestamp(time)} · 장면을 불러오지 못했습니다. 시간 선택은 가능합니다.`; pending = null; } };
           const poster = media?.poster || [...document.querySelectorAll('img')].map(img => img.src).find(src => src.includes('/thumbnails/'));
-          candidate.src = Gif.thumbnailURL(window.location.href, poster, target);
+          candidate.src = thumbnailURL ? thumbnailURL(target) : Gif.thumbnailURL(window.location.href, poster, target);
         } catch { caption.textContent = '이 영상은 썸네일을 제공하지 않습니다. 시간 선택은 가능합니다.'; }
       }, Math.max(0, 140 - (Date.now() - lastRequestAt)));
     }
@@ -91,11 +91,11 @@
       viewStart = full ? 0 : Math.max(0, Math.min(limit - span, (selection[0] + selection[1] - span) / 2));
       viewEnd = viewStart + span;
     }
-    const urlAt = time => Gif.thumbnailURL(window.location.href, video()?.poster, Math.min(time, Math.max(0, limit - 0.1)));
+    const urlAt = time => thumbnailURL ? thumbnailURL(time) : Gif.thumbnailURL(window.location.href, video()?.poster, Math.min(time, Math.max(0, limit - 0.1)));
     function paint() {
       const span = Math.max(0.1, viewEnd - viewStart), left = Math.max(0, Math.min(100, (selection[0] - viewStart) / span * 100)), right = Math.max(0, Math.min(100, (selection[1] - viewStart) / span * 100));
       selected.style.left = `${left}%`; selected.style.width = `${Math.max(0, right - left)}%`;
-      grips[0].style.left = `calc(${left}% - 12px)`; grips[1].style.left = `calc(${right}% - 6px)`;
+      grips[0].style.left = `calc(${left}% - var(--sm-space-3))`; grips[1].style.left = `calc(${right}% - var(--sm-space-2))`;
       for (const grip of grips) grip.style.visibility = selection[1] < viewStart || selection[0] > viewEnd ? 'hidden' : 'visible';
       selected.style.visibility = selection[1] < viewStart || selection[0] > viewEnd ? 'hidden' : 'visible';
       shadeLeft.style.width = `${left}%`; shadeRight.style.width = `${100 - right}%`;
@@ -173,6 +173,6 @@
       if (mediaChanged && !disabled) thumbnail(start, 'start');
     }
     image.style.display = 'none';
-    return {sync, dispose: () => { clear(); frameEpoch++; frames.replaceChildren(); drag = null; }};
+    return {sync, dispose: () => { clear(); frameEpoch++; frames.replaceChildren(); drag = null; section.remove(); }};
   };
 })();

@@ -15,11 +15,21 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  design:
+    name: Design system
+    uses: ./.github/workflows/design.yml
   validate:
     name: Extension validation
+    needs: design
+    if: ${{ always() && !cancelled() }}
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
+      - name: Require successful design validation
+        if: ${{ needs.design.result != 'success' }}
+        run: |
+          echo 'Design validation must pass before extension validation can succeed.'
+          exit 1
       - uses: actions/checkout@v4
         with:
           persist-credentials: false

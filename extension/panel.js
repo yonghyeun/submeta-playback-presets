@@ -4,12 +4,12 @@
   document.getElementById('submeta-presets')?.remove();
   const host = document.createElement('section'); host.id = 'submeta-presets';
   const root = host.attachShadow({mode:'open'});
+  const syncLayout = P.widgetLayout(host);
   const view = SubmetaUI.mountPlaybackSettings(root, {actions: {
-    change: id => changePreference(id),
+    change: (id, values) => changePreference(id, values),
     suspend: () => {suspended=!suspended;render();configure(true);},
     retry: () => {if (!frameId){bindAttempts=0;bind();}else configure(true);}
   }});
-  const $ = view.get;
   let prefs = {...P.defaults}, loaded = false, frame, frameSrc = '', path = '', token = '', frameId, suspended = false;
   let labels = [], bindTimer, bindAttempts = 0, scanTimer, saveChain = Promise.resolve(), pendingSaves = 0;
   const ownRevisions=new Set();
@@ -40,13 +40,11 @@
     const course=/^\/[^/]+\/courses\/[^/]+\/[^/]+/.test(location.pathname);
     const matches=[...document.querySelectorAll('iframe')].filter(f=>{try{return new URL(f.src).origin==='https://iframe.cloudflarestream.com';}catch{return false;}});
     const f=course && matches.length===1 ? matches[0] : null;
-    if (!f) {host.remove();frame=null;frameId=undefined;token='';clearTimeout(bindTimer);return;}
+    if (!f) {host.remove();syncLayout();frame=null;frameId=undefined;token='';clearTimeout(bindTimer);return;}
     // The observed player wrapper includes next/previous controls. Place outside it.
     const container=f.closest('[class*="VideoContent"][class*="__stage"]') || f.closest('[class*="VideoContent"][class*="__player"]') || f.closest('[class*="MasterPlayer"]') || f.parentElement;
     if (host.previousElementSibling!==container) container.after(host);
-    // Match the site's lesson text gutter, including its responsive layout.
-    const details=document.querySelector('[class*="VideoDetails"][class*="__details"]');
-    if(details) host.style.setProperty('--preset-gutter',getComputedStyle(details).paddingLeft);
+    syncLayout();
     if (frame!==f || frameSrc!==f.src || path!==location.pathname) {
       frame=f;frameSrc=f.src;path=location.pathname;token=crypto.randomUUID();frameId=undefined;suspended=false;labels=[];bindAttempts=0;
       text('speedStatus','배속: 플레이어 확인 중');text('captionStatus','자막: 플레이어 확인 중');render();bind();
@@ -61,9 +59,9 @@
       text('speedStatus',`배속: ${m.speed}`);text('captionStatus',`자막: ${m.captions}`);
     }
   });
-  function changePreference(id) {
+  function changePreference(id, values) {
     if (!loaded) return;
-    prefs=P.normalize({...prefs,enabled:$('enabled').checked,manageSpeed:$('rate').value!=='leave',rate:$('rate').value==='leave'?prefs.rate:Number($('rate').value),captions:$('captions').value,language:$('language').value,revision:crypto.randomUUID()});
+    prefs=P.normalize({...prefs,...values,rate:values.rate==='leave'?prefs.rate:Number(values.rate),revision:crypto.randomUUID()});
     const next={...prefs}; pendingSaves++;ownRevisions.add(next.revision);
     if(ownRevisions.size>128)ownRevisions.delete(ownRevisions.values().next().value);
     if(id!=='enabled'){suspended=false;configure(true,true);}else configure(true);

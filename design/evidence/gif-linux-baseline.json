@@ -1,0 +1,73 @@
+{
+  "sourceRun": "https://github.com/yonghyeun/submeta-playback-presets/actions/runs/35679414724",
+  "sourceCommit": "6283fbf0fe6aedf4d9d63441d87152c66f0a8620",
+  "source": "Full .gif-demo-page element screenshots attached on missing-reference failures; no viewport cropping or image reconstruction.",
+  "environment": "mcr.microsoft.com/playwright:v1.62.1-noble, linux-x64, Node 24.19.0, Noto Sans KR 5.3.0",
+  "review": "Mobile ready/generating and desktop complete/save-error visually reviewed; all eight PNG dimensions validated. Source run passed 59 checks and failed only the eight missing GIF references. Normal comparison CI required for acceptance.",
+  "images": [
+    {
+      "file": "gif-complete-1100.png",
+      "sha256": "1e6da3e922b81887327fdb2c6a7421b768c8446fa88c9f032d395ee555f3e395",
+      "dimensions": [
+        1100,
+        950
+      ]
+    },
+    {
+      "file": "gif-complete-390.png",
+      "sha256": "0331e4aaf7c7d70739d4987b46adc6887477967b7eea1a98cc8bf46fbefab32e",
+      "dimensions": [
+        390,
+        1451
+      ]
+    },
+    {
+      "file": "gif-generating-1100.png",
+      "sha256": "205aaaf14703deeb161b3898b58f8cacda5f88f344f848b32fa705e7c5e89d50",
+      "dimensions": [
+        1100,
+        950
+      ]
+    },
+    {
+      "file": "gif-generating-390.png",
+      "sha256": "500106da050e790099629e08fca560814eaadf1aca9e23699b21d25450234b7b",
+      "dimensions": [
+        390,
+        1469
+      ]
+    },
+    {
+      "file": "gif-ready-1100.png",
+      "sha256": "6128dcfbf5f5bd4acf59984e507a28284891cedbe13a2bf230058297c8733c84",
+      "dimensions": [
+        1100,
+        950
+      ]
+    },
+    {
+      "file": "gif-ready-390.png",
+      "sha256": "99eb0e5bc0f563f652b5eeca750be1980850787a2f8a286277b58608ddca09b0",
+      "dimensions": [
+        390,
+        1451
+      ]
+    },
+    {
+      "file": "gif-save-error-1100.png",
+      "sha256": "01fb3f9a7c97f53c89d7288f660719da076ad5307b794e5fb7270280bf2b1495",
+      "dimensions": [
+        1100,
+        950
+      ]
+    },
+    {
+      "file": "gif-save-error-390.png",
+      "sha256": "31ea6b9543616f2815a96ff98ea01e60ea25a87d70100c23fdef57312d13180f",
+      "dimensions": [
+        390,
+        1473
+      ]
+    }
+  ]
+}

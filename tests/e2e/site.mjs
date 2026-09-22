@@ -3,7 +3,8 @@ export const lessonURL='https://submeta.io/@tester/courses/fixture/lesson-1';
 export const lesson=`<!doctype html><html><head><style>
 body{margin:0;background:#19191c;color:#f4f4f7;font:16px/1.6 sans-serif}
 .VideoContent__stage{height:280px;background:#0d0d0e}iframe{width:100%;height:100%;border:0}
-.VideoDetails__details{padding:32px}button{margin:4px}
+.VideoDetails__details{max-width:820px;margin:auto;padding:32px;box-sizing:border-box}button{margin:4px}
+@media(max-width:600px){.VideoDetails__details{padding:24px 20px 24px 16px}}
 </style></head><body><main><div class="VideoContent__stage"><iframe src="https://iframe.cloudflarestream.com/fixture-1"></iframe></div>
 <div class="VideoDetails__details"><h1>Local lesson fixture</h1>
 <button id="next">Next lesson</button><button id="replace">Replace frame</button><button id="remove">Remove player</button></div></main>

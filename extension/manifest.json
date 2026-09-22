@@ -39,8 +39,10 @@
         "shared.js",
         "ui/tokens.js",
         "ui/primitives.js",
+        "ui/react-runtime.js",
         "ui/playback-settings.js",
         "panel.js",
+        "ui/gif-editor.js",
         "gif/launcher.js"
       ],
       "run_at": "document_idle"
@@ -57,6 +59,10 @@
         "gif/capture.js",
         "gif/save.js",
         "gif/timeline.js",
+        "ui/tokens.js",
+        "ui/primitives.js",
+        "ui/react-runtime.js",
+        "ui/gif-editor.js",
         "gif/panel.js"
       ],
       "all_frames": true,

@@ -5,16 +5,16 @@
   "scripts": {
     "audit:dependencies": "node scripts/audit-dependencies.mjs",
     "test": "npm run test:unit && npm run test:e2e",
-    "test:unit": "node tests/extension.test.mjs && node tests/player.test.mjs && node tests/gif-export.test.mjs",
+    "test:unit": "node tests/extension.test.mjs && node tests/player.test.mjs && node tests/gif-export.test.mjs && node --test tests/gif-panel.test.mjs",
     "test:e2e": "playwright test",
     "test:report": "playwright show-report",
     "test:install": "playwright install chromium",
-    "lint:extension": "web-ext lint --source-dir extension --warnings-as-errors",
+    "lint:extension": "npm run design:check && node scripts/lint-extension.mjs",
     "package:chrome": "python3 scripts/package_chrome.py",
     "package:release": "python3 scripts/package_release.py",
     "capture:listing": "playwright test -c playwright.listing.config.mjs",
     "design:generate": "node scripts/design/tokens.mjs",
-    "design:check": "node scripts/design/check.mjs && node --test tests/design.test.mjs",
+    "design:check": "npm run ui:check && node scripts/design/check.mjs && node --test tests/design.test.mjs",
     "storybook": "storybook dev -p 6006 --host 127.0.0.1 --no-open --disable-telemetry",
     "storybook:build": "storybook build --disable-telemetry",
     "storybook:preview": "node scripts/design/serve.mjs storybook-static 6006",
@@ -22,17 +22,28 @@
     "test:ui:update": "playwright test -c playwright.ui.config.mjs --update-snapshots",
     "test:design": "npm run design:check && npm run storybook:build && npm run test:ui && npm run test:unit && npm run lint:extension && npm run test:e2e",
     "test:ui:report": "playwright show-report design-report --host 127.0.0.1 --port 9324",
-    "test:design:guards": "node scripts/design/prove-guards.mjs"
+    "test:design:guards": "node scripts/design/prove-guards.mjs",
+    "ui:build": "node scripts/design/build-ui.mjs",
+    "ui:check": "tsc && node scripts/design/build-ui.mjs --check"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",
     "@fontsource/noto-sans-kr": "5.3.0",
-    "@storybook/html-vite": "10.6.0",
+    "@storybook/addon-docs": "10.6.0",
+    "@storybook/react-vite": "10.6.0",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "esbuild": "0.28.2",
     "playwright": "1.62.1",
     "storybook": "10.6.0",
+    "typescript": "7.0.2",
     "vite": "7.3.6",
     "web-ext": "10.6.0"
   },
   "author": "aebongbong",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  }
 }

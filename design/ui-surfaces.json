@@ -1,0 +1,58 @@
+{
+  "surfaces": [
+    {
+      "id": "playback",
+      "controller": "extension/panel.js",
+      "component": "ui/components.tsx",
+      "story": "playback--ready",
+      "styles": [
+        "ui/styles.ts"
+      ]
+    },
+    {
+      "id": "gif-launcher",
+      "controller": "extension/gif/launcher.js",
+      "component": "ui/gif-components.tsx",
+      "story": "giflauncher--ready",
+      "styles": [
+        "ui/gif-styles.ts"
+      ]
+    },
+    {
+      "id": "gif-editor",
+      "controller": "extension/gif/panel.js",
+      "component": "ui/gif-components.tsx",
+      "story": "gif--ready",
+      "styles": [
+        "ui/gif-styles.ts"
+      ]
+    },
+    {
+      "id": "gif-timeline",
+      "controller": "extension/gif/timeline.js",
+      "component": "ui/gif-components.tsx",
+      "story": "gif--ready",
+      "styles": [
+        "extension/gif/timeline.js"
+      ]
+    }
+  ],
+  "nonvisualDom": {
+    "extension/gif/capture.js": "Offscreen canvas for frame capture; not an interactive screen.",
+    "extension/gif/encoder-client.js": "Hidden encoder iframe; not an interactive screen.",
+    "extension/gif/encoder.html": "Hidden encoder document with no visible controls."
+  },
+  "systemOwned": [
+    {
+      "source": "native/macos/gif-folder/main.swift",
+      "owner": "macOS NSOpenPanel",
+      "reason": "Native folder permissions and platform accessibility."
+    },
+    {
+      "source": "extension/gif/save.js",
+      "owner": "Browser downloads dialog",
+      "reason": "Browser-controlled download destination and permissions."
+    }
+  ],
+  "scope": "All extension-authored product UI in this repository. Host lesson/player controls, system dialogs, documentation and development fixtures are not extension UI."
+}

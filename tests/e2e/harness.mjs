@@ -17,7 +17,7 @@ export const test=base.extend({
     if(process.env.DESIGN_FAULT==='integration'){
       const panelPath=path.join(ext,'panel.js');
       const source=await readFile(panelPath,'utf8');
-      const original="rate:$('rate').value==='leave'?prefs.rate:Number($('rate').value)";
+      const original="rate:values.rate==='leave'?prefs.rate:Number(values.rate)";
       if(!source.includes(original))throw new Error('Integration fault target changed');
       await writeFile(panelPath,source.replace(original,'rate:1'));
     }
