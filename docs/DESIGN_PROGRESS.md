@@ -5,7 +5,7 @@
 현재: P0~P4 완료. 최신 main의 0.4.1 업데이트를 통합했고, 로컬 및 고정 Linux 환경의 CI 검증을 통과했다.
 추가 요청: P4.5 React 전환 구현·로컬·Linux CI 검증 완료. P5 GIF 적용도 구현·로컬·Linux CI 검증과 새 시각 기준 등록을 완료했다. 실제 서비스·Firefox·Mac 보조 앱 검수는 P6에 남아 있다.
 
-최종 확대 요청: 이 저장소의 모든 확장 UI를 점검하고 실행 상태·진행 표시·새 UI 등록 검사를 보완했다. [전체 적용 범위](DESIGN_UI_COVERAGE.md). 전체 자동 검증 진행 중.
+최종 확대 요청: 이 저장소의 모든 확장 UI를 점검하고 실행 상태·진행 표시·새 UI 등록 검사를 보완했다. [전체 적용 범위](DESIGN_UI_COVERAGE.md). 전체 자동 검증 완료: UI 80/80, 실제 ZIP 14/14, 계약 7/7, [Linux CI 성공](https://github.com/yonghyeun/submeta-playback-presets/actions/runs/35680551333).
 
 ## 작업 목록
 
