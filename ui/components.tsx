@@ -44,6 +44,11 @@ export interface StatusMessageProps {children: string; tone?: Tone; id?: string}
 export function StatusMessage({children, tone = 'neutral', id}: StatusMessageProps) {
   return <span className="sm-status" data-tone={tone} id={id}>{children}</span>;
 }
+export interface ProgressProps {label:string;value?:number;max?:number}
+/** Omit value while the total is unknown; native progress exposes this to assistive technology. */
+export function Progress({label,value,max=100}:ProgressProps) {
+  return <progress className="sm-progress" aria-label={label} value={value} max={max}/>;
+}
 export interface DisclosureProps {
   summary: string;
   children: ReactNode;

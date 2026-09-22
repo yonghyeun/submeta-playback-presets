@@ -67,3 +67,5 @@
 | `test:design` | 위 검사와 기존 단위/패키지 통합 검사를 연결하는 단일 진입점 |
 
 `npm run test:design`이 디자인 및 기존 제품 검사를 연결한다. 기존 `scripts/test-local.sh`에도 GIF 단위 검사를 추가했으며, 이 스크립트는 단위+E2E용이다. 디자인 전체 검사는 `./scripts/design-local.sh test:design`으로 실행한다. `npm run test:design:guards`는 다섯 가지 의도적 오류 감지를 별도로 검증한다.
+
+전체 제품 UI의 적용 목록·시스템 UI 경계·새 화면 등록 규칙은 [전체 UI 적용 범위](DESIGN_UI_COVERAGE.md)를 따른다.

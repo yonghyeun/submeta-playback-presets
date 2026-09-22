@@ -18,7 +18,6 @@ export const gifCSS = `${UI.tokenCSS}${UI.controlCSS}
 .gif-messages{display:grid;gap:var(--sm-space-2)}
 .gif-folder{margin-top:var(--sm-space-5);padding-top:var(--sm-space-4);border-top:var(--sm-size-border) solid var(--sm-border-default)}
 .gif-folder p{font-size:var(--sm-font-caption);color:var(--sm-text-muted);overflow-wrap:anywhere;margin:0 0 var(--sm-space-3)}
-.gif-progress{width:100%;height:var(--sm-space-2);accent-color:var(--sm-action-primary)}
 .gif-diagnostics{margin-top:var(--sm-space-5);color:var(--sm-text-muted);font-size:var(--sm-font-caption)}
 .gif-diagnostics summary{cursor:pointer;width:fit-content;min-height:var(--sm-space-6)}
 .gif-diagnostics pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:var(--sm-size-label-max);overflow:auto}
@@ -38,6 +37,6 @@ export function timePortalCSS(scope: string) {
   return (UI.controlCSS + timeCSS).replace(/([^{}]+)\{/g,(match,selectors: string) => selectors.trim().startsWith('@') ? match : selectors.split(',').map(selector => selector.trim().startsWith('.gif-time-content') ? scope + selector.trim().slice('.gif-time-content'.length) : `${scope} ${selector.trim()}`).join(',') + '{');
 }
 export const gifHostCSS = 'display:none;position:fixed;inset:0;z-index:2147483647;overflow:auto;box-sizing:border-box';
-export const gifLauncherCSS = `${UI.tokenCSS}${UI.controlCSS}:host{display:block;clear:both;background:var(--sm-surface-canvas);color:var(--sm-text-primary);font:var(--sm-font-body)/var(--sm-line-body) system-ui,sans-serif}.gif-launcher{padding:var(--sm-space-3) var(--sm-space-4);display:flex;align-items:center;flex-wrap:wrap;gap:var(--sm-space-3)}.gif-launcher p{font-size:var(--sm-font-caption);color:var(--sm-text-muted);margin:0}`;
+export const gifLauncherCSS = `${UI.tokenCSS}${UI.controlCSS}:host{display:block;clear:both;background:var(--sm-surface-canvas);color:var(--sm-text-primary);font:var(--sm-font-body)/var(--sm-line-body) system-ui,sans-serif}:host([data-theme="light"]){color-scheme:light}.gif-launcher{padding:var(--sm-space-3) var(--sm-space-4);display:flex;align-items:center;flex-wrap:wrap;gap:var(--sm-space-3)}.gif-launcher p{font-size:var(--sm-font-caption);color:var(--sm-text-muted);margin:0}`;
 export const gifBackdropCSS = `position:fixed;inset:0;background:${UI.tokens['surface.scrim']};opacity:${UI.tokens['opacity.scrim']};z-index:2147483000`;
 export const gifFrameStyles = {position:'fixed',top:'50%',left:'50%',right:'auto',bottom:'auto',transform:'translate(-50%, -50%)',width:`min(${UI.tokens['size.gifDialogWidth']}, calc(100vw - ${UI.tokens['space.8']}))`,height:`min(${UI.tokens['size.gifDialogHeight']}, calc(100dvh - ${UI.tokens['space.8']}))`,'max-width':'none','max-height':'none','z-index':'2147483001',border:'0','border-radius':UI.tokens['radius.lg']};

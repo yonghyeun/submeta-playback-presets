@@ -50,3 +50,12 @@ test('GIF React runtime and renderer load before controllers in both document co
     assert.ok(scripts.indexOf('ui/gif-editor.js')<scripts.indexOf(controller));
   }
 });
+
+
+test('every authored extension DOM surface has a reviewed design-system owner',async()=>{
+  const {checkSurfaces}=await import('../scripts/design/surfaces.mjs');
+  const inventory=JSON.parse(readFileSync(new URL('../design/ui-surfaces.json',import.meta.url)));
+  const root=new URL('../',import.meta.url);
+  checkSurfaces(root,inventory);
+  assert.throws(()=>checkSurfaces(root,{...inventory,surfaces:inventory.surfaces.filter(item=>item.id!=='gif-launcher')}),/Unregistered UI surface: extension\/gif\/launcher.js/);
+});

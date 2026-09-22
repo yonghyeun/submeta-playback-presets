@@ -2,7 +2,7 @@
   "version": "0.4.1",
   "signed": false,
   "archive": "submeta-playback-preset-0.4.1-unsigned.zip",
-  "sha256": "557d1611c0f35e5ba095e01147aac5cdfa608d3c7520dfbb265f111a45db828a",
+  "sha256": "3046192902451831a24433ee29851b63b1d5b8912accd75b1e8263dd2cdff8ef",
   "files": {
     "LICENSE": {
       "bytes": 1067,
@@ -49,8 +49,8 @@
       "sha256": "7baac3e714b4f96c547772231daed739ede220bc3396b93144479096d9412599"
     },
     "gif/launcher.js": {
-      "bytes": 4945,
-      "sha256": "53406a03f338ad5477fae735d6d42b19a631c0107800f43b955f632a6594cfa1"
+      "bytes": 5141,
+      "sha256": "3233b8c37a1c480340310ccb42ef11bf5a3b7b81d789e3bfdf6754f292a0fb8e"
     },
     "gif/native-folder.js": {
       "bytes": 1720,
@@ -145,16 +145,16 @@
       "sha256": "759f02b5afb6ca84446d9c811992e8a7709c4a9a145aad5544e84959a2aacfa0"
     },
     "ui/gif-editor.js": {
-      "bytes": 20137,
-      "sha256": "0ab8d77319d3cd0e76837da0c26fe9f2b87fbc0fe5c7b39750b4029b75a02e0d"
+      "bytes": 20304,
+      "sha256": "262e07e803bc6102f798c2c71c416772035dc1170bb15475a6ce9454a32c8233"
     },
     "ui/playback-settings.js": {
-      "bytes": 12491,
-      "sha256": "56cadcfe8c7ce78e911ee83d7e2f8e9b20643359522903c920c76767a3cc5456"
+      "bytes": 12583,
+      "sha256": "80de83cefdc242980da3422ffe76c17f9b9920d69d0b480ab596777ca0d0ef68"
     },
     "ui/primitives.js": {
-      "bytes": 2441,
-      "sha256": "f44af6cc044c6e3fc635ea93a07cf55fc6d44d473a3f8700d19afdd94e30c9d3"
+      "bytes": 2533,
+      "sha256": "2cb713fa99572e1b18908286f03051e159725a1fc8ac670e97842a415168f184"
     },
     "ui/react-runtime.js": {
       "bytes": 223307,

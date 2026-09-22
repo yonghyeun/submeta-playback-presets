@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 import {readFileSync} from 'node:fs';
 const open = (page,id,args = '') => page.goto(`/iframe.html?id=${id}&viewMode=story${args ? '&args='+encodeURIComponent(args) : ''}`);
 
-for (const id of ['button--primary','button--disabled','checkbox--checked','checkbox--disabled','selectfield--default','selectfield--disabled','statusmessage--error','disclosure--expanded','playbacksettings--default']) {
+for (const id of ['button--primary','button--disabled','checkbox--checked','checkbox--disabled','selectfield--default','selectfield--disabled','statusmessage--error','disclosure--expanded','playbacksettings--default','giflauncher--ready','giflauncher--connecting','giflauncher--waiting','giflauncher--opened','giflauncher--error','giflauncher--light','progress--determinate','progress--indeterminate','progress--complete','timefield--default','timefield--invalid']) {
   test(`React component accessibility ${id}`, async ({page}) => {
     await open(page,id);
     await expect(page.locator('.demo-host')).toBeVisible();
@@ -62,4 +62,29 @@ test('production adapter survives mount, update, unmount and remount without dup
   expect(result.events).toBe(10);
   expect(result.values).toMatchObject({enabled:false,manageSpeed:true,rate:'1.25',captions:'on',language:'ko'});
   expect(result.remaining).toBe(0);
+});
+
+
+test('launcher and progress expose waiting, recovery and completion states',async({page})=>{
+  await open(page,'giflauncher--connecting');
+  await expect(page.getByRole('button',{name:'GIF 만들기'})).toBeDisabled();
+  await expect(page.getByRole('status')).toHaveText('편집창 연결 중…');
+  await open(page,'giflauncher--error');
+  await expect(page.getByRole('button')).toBeEnabled();
+  await expect(page.locator('.sm-status')).toHaveAttribute('data-tone','error');
+  await open(page,'giflauncher--opened');
+  await expect(page.getByRole('button')).toHaveAttribute('aria-expanded','true');
+  await open(page,'progress--determinate');
+  await expect(page.getByRole('progressbar',{name:'GIF 생성 진행률'})).toHaveAttribute('value','24');
+  await open(page,'progress--indeterminate');
+  await expect(page.getByRole('progressbar')).not.toHaveAttribute('value');
+});
+
+
+test('registered product surfaces exist in the built Storybook catalogue',async({request})=>{
+  const inventory=JSON.parse(readFileSync(new URL('../../design/ui-surfaces.json',import.meta.url)));
+  const response=await request.get('/index.json');
+  expect(response.ok()).toBe(true);
+  const {entries}=await response.json();
+  for(const surface of inventory.surfaces) expect(entries[surface.story],surface.id).toBeTruthy();
 });

@@ -18,7 +18,7 @@
     for (const [element, property, value, priority] of changed.reverse()) {
       if (value) element.style.setProperty(property, value, priority); else element.style.removeProperty(property);
     }
-    changed = []; view.update({opened:false});
+    changed = []; view.update({opened:false,hint:'구간을 선택하고 GIF로 만들기',tone:'neutral'});
     if (previousFocus?.isConnected && previousFocus !== host) previousFocus.focus(); else view.focus();
   }
   async function close() {
@@ -28,11 +28,11 @@
   async function open() {
     if (opened) { await close(); return; }
     if (!frame?.isConnected) return;
-    view.update({disabled:true}); const targetFrame = frame;
+    view.update({disabled:true,hint:'편집창 연결 중…',tone:'neutral'}); const targetFrame = frame;
     try {
       const response = await api.runtime.sendMessage({type: 'gif:ui-open'});
       if (frame !== targetFrame || !targetFrame.isConnected) return;
-      if (!response?.ready) { view.update({hint:'영상을 준비한 뒤 다시 눌러주세요.'}); return; }
+      if (!response?.ready) { view.update({hint:'영상을 준비한 뒤 다시 눌러주세요.',tone:'neutral'}); return; }
       previousFocus = document.activeElement; opened = true;
       // Keep the existing iframe mounted so its authenticated player and result
       // are not reloaded. Temporarily remove ancestor clipping/containing blocks.
@@ -47,9 +47,9 @@
       document.documentElement.append(backdrop);
       for (const [name, value] of Object.entries(SubmetaUI.gifFrameStyles)) style(frame, name, value);
       style(document.documentElement, 'overflow', 'hidden');
-      view.update({opened:true}); frame.focus();
+      view.update({opened:true,hint:'GIF 편집창이 열려 있습니다.',tone:'neutral'}); frame.focus();
       await api.runtime.sendMessage({type: 'gif:ui-focus'});
-    } catch { restore(); view.update({hint:'편집창을 연결하지 못했습니다. 페이지를 새로 고침해주세요.'}); }
+    } catch { restore(); view.update({hint:'편집창을 연결하지 못했습니다. 페이지를 새로 고침해주세요.',tone:'error'}); }
     finally { view.update({disabled:false}); }
   }
   backdrop.addEventListener('click', () => void close());

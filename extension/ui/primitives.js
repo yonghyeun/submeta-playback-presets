@@ -19,6 +19,7 @@
     .sm-status{color:var(--sm-text-muted);overflow-wrap:anywhere}
     .sm-status[data-tone="error"]{color:var(--sm-status-error)}
     .sm-status[data-tone="success"]{color:var(--sm-status-success)}
+    .sm-progress{width:100%;height:var(--sm-space-2);accent-color:var(--sm-action-primary)}
     :disabled{opacity:var(--sm-opacity-disabled);cursor:default}
     :focus-visible{outline:var(--sm-size-focus) solid var(--sm-focus-ring);outline-offset:var(--sm-size-focus-offset)}
     @media(forced-colors:active){.sm-checkbox{appearance:auto}.sm-checkbox::before{display:none}}

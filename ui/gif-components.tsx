@@ -1,6 +1,7 @@
 import {useId, useLayoutEffect, useRef} from 'react';
 import {createPortal} from 'react-dom';
-import {Button, Disclosure, StatusMessage} from './components';
+import {Button, Disclosure, Progress, StatusMessage} from './components';
+import type {Tone} from './types';
 import type {GifActions, GifEditorState, TimelineFactory, TimelineMedia} from './gif-types';
 import {timeCSS, timePortalCSS} from './gif-styles';
 
@@ -54,7 +55,7 @@ export function GifEditor(props:GifEditorProps) {
         <section className="gif-card" aria-label="미리보기 및 저장"><h3>미리보기 및 저장</h3>
           <div className="gif-preview">{previewURL ? <img src={previewURL} alt="생성한 GIF 미리보기"/> : <div className="gif-placeholder"><strong>GIF</strong><p>{busy==='generating' ? '선택한 구간을 GIF로 만들고 있습니다.' : '생성한 GIF가 여기에 표시됩니다.'}</p></div>}</div>
           <div className="gif-messages" role="status" aria-live="polite"><StatusMessage tone={tone}>{status}</StatusMessage><StatusMessage tone={clipboardTone}>{clipboardStatus}</StatusMessage></div>
-          {busy==='generating' && <progress className="gif-progress" aria-label="GIF 생성 진행률" value={progress?.value} max={progress?.max||100}/>}
+          {busy==='generating' && <Progress label="GIF 생성 진행률" value={progress?.value} max={progress?.max||100}/>}
           <div className="gif-actions"><Button variant="primary" disabled={!previewURL||blocked} onClick={()=>actions.save(nativeAvailable?'remembered-folder':'browser')}>GIF 파일 저장</Button><Button disabled={!previewURL||blocked||!nativeAvailable} onClick={actions.copy}>클립보드 복사</Button>{nativeAvailable && <Button disabled={!previewURL||blocked} onClick={()=>actions.save('browser')}>이번만 다른 위치에 저장</Button>}</div>
           <div className="gif-folder"><p>{folderLabel}</p><Button disabled={blocked||!nativeAvailable} onClick={actions.chooseFolder}>저장 폴더 변경</Button></div>
         </section>
@@ -63,7 +64,7 @@ export function GifEditor(props:GifEditorProps) {
     </div>
   </>;
 }
-export interface GifLauncherProps {opened:boolean;disabled:boolean;hint:string;onOpen:()=>void}
-export function GifLauncher({opened,disabled,hint,onOpen}:GifLauncherProps) {
-  return <div className="gif-launcher"><Button aria-haspopup="dialog" aria-expanded={opened} disabled={disabled} onClick={onOpen}>GIF 만들기</Button><p role="status">{hint}</p></div>;
+export interface GifLauncherProps {opened:boolean;disabled:boolean;hint:string;tone?:Tone;onOpen:()=>void}
+export function GifLauncher({opened,disabled,hint,tone='neutral',onOpen}:GifLauncherProps) {
+  return <div className="gif-launcher"><Button aria-haspopup="dialog" aria-expanded={opened} disabled={disabled} onClick={onOpen}>GIF 만들기</Button><p role="status"><StatusMessage tone={tone}>{hint}</StatusMessage></p></div>;
 }
