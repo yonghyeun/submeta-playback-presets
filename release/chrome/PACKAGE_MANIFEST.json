@@ -1,7 +1,7 @@
 {
-  "version": "0.4.1",
-  "archive": "submeta-playback-preset-0.4.1-chrome.zip",
-  "sha256": "5b89171b2780b82213cf38d848a10817c354b08e95e587ae683dadc9fcf1fc5e",
+  "version": "0.4.2",
+  "archive": "submeta-playback-preset-0.4.2-chrome.zip",
+  "sha256": "b483030e858a4723e6a80f71c62c0155e1d002da9847725aa15a0955cecf957f",
   "files": {
     "LICENSE": {
       "bytes": 1067,
@@ -121,7 +121,7 @@
     },
     "manifest.json": {
       "bytes": 2114,
-      "sha256": "35e0df3a360b106df2120c126243897af621a74e326a27536b32745977bd44d7"
+      "sha256": "e6131ad0e26ed24bfbc1a16e9ecff0ea61ff1aba4814c919883baf172bb59c47"
     },
     "panel.js": {
       "bytes": 5889,
