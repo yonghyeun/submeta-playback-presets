@@ -1,6 +1,6 @@
-# Reviewer notes — 0.4.0
+# Reviewer notes — 0.4.2
 
-This is an unofficial extension for the authenticated Submeta course player. The distribution code is plain, unminified JavaScript with no bundling or remote code. The package contains its own readable source. The Chrome package includes a local compatibility wrapper for Chrome extension APIs.
+This is an unofficial extension for the authenticated Submeta course player. Controller code is readable JavaScript. React/TypeScript UI and its local React runtime are bundled and minified with esbuild. A matching source archive with locked dependencies and reproduction instructions accompanies this version. No remote code is loaded. The Chrome package includes a local compatibility wrapper for Chrome extension APIs.
 
 ## Permissions
 
