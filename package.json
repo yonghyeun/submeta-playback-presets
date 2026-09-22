@@ -5,7 +5,7 @@
   "scripts": {
     "audit:dependencies": "node scripts/audit-dependencies.mjs",
     "test": "npm run test:unit && npm run test:e2e",
-    "test:unit": "node tests/extension.test.mjs && node tests/player.test.mjs && node tests/gif-export.test.mjs",
+    "test:unit": "node tests/extension.test.mjs && node tests/player.test.mjs && node tests/gif-export.test.mjs && node --test tests/gif-panel.test.mjs",
     "test:e2e": "playwright test",
     "test:report": "playwright show-report",
     "test:install": "playwright install chromium",

@@ -15,7 +15,7 @@ const summary=[];
 for(const trial of trials){
   const directory=path.join(root,trial.name);mkdirSync(directory,{recursive:true});
   const resultFile=path.join(directory,'results.json');
-  const args=trial.args || ['node_modules/playwright/cli.js','test','-c',trial.name==='integration'?'playwright.config.mjs':'playwright.ui.config.mjs','--grep',trial.grep,...(trial.name==='integration'?['--output',directory,'--reporter=list,json']:[])];
+  const args=trial.args || ['node_modules/playwright/cli.js','test','-c',trial.name==='integration'?'playwright.config.mjs':'playwright.ui.config.mjs',...(trial.name==='integration'?[]:['tests/ui/playback.spec.mjs']),'--grep',trial.grep,...(trial.name==='integration'?['--output',directory,'--reporter=list,json']:[])];
   const result=spawnSync(process.execPath,args,{encoding:'utf8',timeout:90000,env:{...process.env,FORCE_COLOR:'0',DESIGN_FAULT:trial.name==='tokens'?'':trial.name,PLAYWRIGHT_JSON_OUTPUT_FILE:resultFile}});
   const log=(result.stdout||'')+(result.stderr||'');writeFileSync(path.join(root,trial.name+'.log'),log);
   let exactFailure=true;

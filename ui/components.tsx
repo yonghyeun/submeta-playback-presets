@@ -2,6 +2,9 @@ import {useLayoutEffect, useState, type ReactNode} from 'react';
 import type {Option, PlaybackActions, PlaybackState, PreferenceId, Tone} from './types';
 
 export interface ButtonProps {
+  'aria-label'?: string;
+  'aria-haspopup'?: 'dialog';
+  'aria-expanded'?: boolean;
   /** Visible, descriptive action label. */
   children: string;
   variant?: 'secondary' | 'primary';
@@ -9,8 +12,8 @@ export interface ButtonProps {
   id?: string;
   onClick?: () => void;
 }
-export function Button({children, variant = 'secondary', disabled = false, id, onClick}: ButtonProps) {
-  return <button className="sm-button" data-variant={variant} type="button" id={id} disabled={disabled} onClick={onClick}>{children}</button>;
+export function Button({children, variant = 'secondary', disabled = false, id, onClick, ...aria}: ButtonProps) {
+  return <button {...aria} className="sm-button" data-variant={variant} type="button" id={id} disabled={disabled} onClick={onClick}>{children}</button>;
 }
 export interface CheckboxProps {
   label: string;

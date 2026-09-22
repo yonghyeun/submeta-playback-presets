@@ -2,5 +2,5 @@
 import * as React from 'react';
 import * as JSX from 'react/jsx-runtime';
 import {createRoot} from 'react-dom/client';
-import {flushSync} from 'react-dom';
-Object.assign(globalThis, {SubmetaReactRuntime:{React,JSX,createRoot,flushSync}});
+import {flushSync,createPortal} from 'react-dom';
+Object.assign(globalThis, {SubmetaReactRuntime:{React,JSX,createRoot,flushSync,createPortal}});

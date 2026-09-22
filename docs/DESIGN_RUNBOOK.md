@@ -13,7 +13,8 @@ npm run storybook
 - **시작**: 디자인 철학, 조작 가능한 재생 패널, 상태 비교, 색상 토큰, 밝은 테마, 변경 전 화면.
 - **재생 설정**: 기본/불러오는 중/저장 중/실패/유지 꺼짐/언어 미제공/연결 실패/현재 영상 해제/처음 사용/밝은 테마/닫힌 root.
 - **조합 요소**: PlaybackSettings의 실제 props, 상태, 이벤트 계약과 Controls.
-- **기본 요소**: Button, Checkbox, SelectField, StatusMessage, Disclosure. 각 Docs에서 사용 원칙과 입력 계약을 보고 Controls로 값을 바꾼다.
+- **GIF 편집기**: 구간 선택·생성·취소·저장·복사·보조 앱 부재 등 15개 상태와 키보드 조작. [적용 범위와 검증](DESIGN_GIF_P5_RESULTS.md).
+- **기본 요소**: Button, Checkbox, SelectField, StatusMessage, Disclosure, TimeField. 각 Docs에서 사용 원칙과 입력 계약을 보고 Controls로 값을 바꾼다.
 
 Storybook의 입력은 데모 상태를 바꾸며 실제 계정이나 브라우저 설정을 저장하지 않는다. 제품과 동일한 React 컴포넌트를 사용한다. 구조와 검사 예외는 [React 전환 기록](DESIGN_REACT_MIGRATION.md)을 참고한다.
 

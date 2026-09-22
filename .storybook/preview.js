@@ -5,7 +5,7 @@ import '../stories/gallery.css';
 export default {
   parameters: {
     layout: 'fullscreen',
-    options: {storySort: {order: ['시작', '재생 설정', '조합 요소', '기본 요소']}},
+    options: {storySort: {order: ['시작', '재생 설정', 'GIF 편집기', '조합 요소', '기본 요소']}},
     controls: {expanded: true},
   },
 };

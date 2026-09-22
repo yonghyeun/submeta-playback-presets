@@ -10,5 +10,5 @@ export const Overview = {name:'디자인 시스템 둘러보기', render: () => 
     <section className="foundation"><div><p className="kicker">03 / FOUNDATIONS</p><h2>색보다 먼저, 의미.</h2><p>배경·본문·경계·포커스·상태를 이름으로 정의합니다.<br/>하나의 원본이 제품과 사례에 함께 적용됩니다.</p></div><div className="swatches">{Object.entries(labels).map(([key,label]) => <div className="swatch" key={key}><span style={{background:globalThis.SubmetaUI.tokens[key]}}/><strong>{label}</strong><code>{key}</code></div>)}</div></section>
     <section className="theme-section"><div className="section-heading"><div><p className="kicker">04 / SAME RULES, TWO THEMES</p><h2>문맥은 달라도, 규칙은 같게.</h2></div></div><div id="light-panel"><Demo theme="light" expanded/></div></section>
     <section className="before-section"><div className="section-heading"><div><p className="kicker">05 / BEFORE</p><h2>출발점도 남겨두었습니다.</h2></div><p>P0에서 촬영한 기존 제품 화면</p></div><details><summary>이전 화면 펼쳐보기</summary><img src="/evidence/p0/desktop.png" alt="디자인 시스템 적용 전 기존 재생 설정 화면" loading="lazy"/></details></section>
-    <footer className="gallery-footer"><span>Submeta · 디자인의 기준을 실행 가능한 코드로.</span><span>GIF 편집기 적용은 다음 단계입니다.</span></footer>
+    <footer className="gallery-footer"><span>Submeta · 디자인의 기준을 실행 가능한 코드로.</span><span>GIF 편집기도 같은 컴포넌트와 토큰을 사용합니다.</span></footer>
 </main>};

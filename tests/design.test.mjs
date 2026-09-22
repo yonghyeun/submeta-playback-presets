@@ -39,3 +39,14 @@ test('React vendor exception never permits new application warnings or changed r
   assert.throws(() => validateLintReport({...report,errors:[{code:'MANIFEST_CONTENT_SCRIPT_FILE_NOT_FOUND'}]},runtime),/lint failed/);
   assert.throws(() => validateLintReport(report,Buffer.concat([runtime,Buffer.from('changed')])),/runtime changed/);
 });
+
+test('GIF React runtime and renderer load before controllers in both document contexts',()=>{
+  const manifest=JSON.parse(readFileSync(new URL('../extension/manifest.json',import.meta.url)));
+  for(const entry of manifest.content_scripts){
+    const scripts=entry.js;
+    assert.ok(scripts.indexOf('ui/react-runtime.js')>=0);
+    assert.ok(scripts.indexOf('ui/react-runtime.js')<scripts.indexOf('ui/gif-editor.js'));
+    const controller=scripts.includes('gif/panel.js')?'gif/panel.js':'gif/launcher.js';
+    assert.ok(scripts.indexOf('ui/gif-editor.js')<scripts.indexOf(controller));
+  }
+});
